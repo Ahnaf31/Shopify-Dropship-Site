@@ -155,6 +155,7 @@
                 },
                 "price_tVjtKg": {
                   "type": "price",
+                  "disabled": true,
                   "settings": {
                     "show_sale_price_first": true,
                     "show_installments": false,
@@ -202,7 +203,11 @@
                   "blocks": {}
                 }
               },
-              "block_order": ["text_xrnftG", "price_tVjtKg", "text_aViGPU"]
+              "block_order": [
+                "text_xrnftG",
+                "price_tVjtKg",
+                "text_aViGPU"
+              ]
             },
             "divider_VJhene": {
               "type": "_divider",
@@ -223,22 +228,31 @@
               "settings": {
                 "color_option_name": "Color",
                 "tier_1_label": "1x CoolClip",
+                "tier_1_badge": "Spring Sale Last Day!",
                 "tier_1_quantity": 1,
                 "tier_1_discount": 0,
                 "tier_2_label": "2x CoolClip",
+                "tier_2_badge": "",
                 "tier_2_quantity": 2,
                 "tier_2_discount": 28,
                 "tier_3_label": "3x CoolClip",
+                "tier_3_badge": "Best Value!",
                 "tier_3_quantity": 3,
                 "tier_3_discount": 35
               },
               "blocks": {}
             }
           },
-          "block_order": ["group_icgrde", "divider_VJhene", "buy_box_tiers_1"]
+          "block_order": [
+            "group_icgrde",
+            "divider_VJhene",
+            "buy_box_tiers_1"
+          ]
         }
       },
-      "block_order": ["disclosures_g9mWze"],
+      "block_order": [
+        "disclosures_g9mWze"
+      ],
       "settings": {
         "content_width": "content-center-aligned",
         "desktop_media_position": "left",
@@ -370,7 +384,9 @@
           ]
         }
       },
-      "block_order": ["text_cbcgyb"],
+      "block_order": [
+        "text_cbcgyb"
+      ],
       "name": "t:names.product_recommendations",
       "settings": {
         "product": "{{ closest.product }}",
@@ -392,5 +408,8 @@
       }
     }
   },
-  "order": ["main", "product_recommendations_qggXJq"]
+  "order": [
+    "main",
+    "product_recommendations_qggXJq"
+  ]
 }
