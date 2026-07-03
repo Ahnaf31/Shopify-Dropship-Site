@@ -1,0 +1,130 @@
+{%- doc -%}
+  Custom tiered buy-box: quantity tiers (1x/2x/3x) each with per-unit discount,
+  dynamic color pickers per unit, single AJAX add-to-cart call with multiple line items.
+{%- enddoc -%}
+
+{% liquid
+  assign product = closest.product
+  assign color_option_name = block.settings.color_option_name | default: 'Color'
+  assign color_option = product.options_with_values | where: 'name', color_option_name | first
+%}
+
+<buy-box-tiers
+  class="buy-box-tiers"
+  data-product-id="{{ product.id }}"
+  data-color-option-position="{{ color_option.position }}"
+  {{ block.shopify_attributes }}
+>
+  <fieldset class="buy-box-tiers__tiers">
+    {% for i in (1..3) %}
+      {% liquid
+        case i
+          when 1
+            assign qty = block.settings.tier_1_quantity
+            assign discount = block.settings.tier_1_discount
+            assign label = block.settings.tier_1_label
+          when 2
+            assign qty = block.settings.tier_2_quantity
+            assign discount = block.settings.tier_2_discount
+            assign label = block.settings.tier_2_label
+          when 3
+            assign qty = block.settings.tier_3_quantity
+            assign discount = block.settings.tier_3_discount
+            assign label = block.settings.tier_3_label
+        endcase
+        assign unit_price = product.selected_or_first_available_variant.price
+        assign discounted_price = unit_price | times: 100 | minus: discount | times: unit_price | divided_by: 100.0
+        assign discounted_price = unit_price | times: discount | divided_by: 100
+        assign discounted_price = unit_price | minus: discounted_price
+      %}
+      <label class="buy-box-tiers__tier{% if forloop.first %} buy-box-tiers__tier--checked{% endif %}">
+        <input
+          type="radio"
+          name="buy-box-tier-{{ block.id }}"
+          value="{{ qty }}"
+          data-quantity="{{ qty }}"
+          data-discount="{{ discount }}"
+          {% if forloop.first %}checked{% endif %}
+        >
+        <span class="buy-box-tiers__tier-info">
+          <span class="buy-box-tiers__tier-label">{{ label }}</span>
+          {% if discount > 0 %}
+            <span class="buy-box-tiers__tier-save">{{ 'You save' }} {{ discount }}%</span>
+          {% endif %}
+        </span>
+        <span class="buy-box-tiers__tier-price">
+          <span class="buy-box-tiers__price-now">{{ discounted_price | money }}</span>
+          {% if discount > 0 %}
+            <s class="buy-box-tiers__price-was">{{ unit_price | money }}</s>
+          {% endif %}
+        </span>
+      </label>
+    {% endfor %}
+  </fieldset>
+
+  <div class="buy-box-tiers__colors" ref="colorSlots"></div>
+
+  <template data-color-select-template>
+    <div class="buy-box-tiers__color-row">
+      <label class="visually-hidden">{{ color_option_name }}</label>
+      <div class="variant-option__select-wrapper">
+        <select class="variant-option__select" data-color-select>
+          {% for value in color_option.values %}
+            <option
+              value="{{ value | escape }}"
+              data-variant-id="{{ value.variant.id }}"
+              {% unless value.available %}disabled{% endunless %}
+            >
+              {{ value | escape }}{% unless value.available %} - {{ 'content.unavailable' | t }}{% endunless %}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+  </template>
+
+  <button type="button" class="button buy-box-tiers__add-to-cart" ref="addToCartBtn">
+    {{ 'products.product.add_to_cart' | t }}
+  </button>
+  <p class="buy-box-tiers__error" ref="errorMsg" hidden></p>
+</buy-box-tiers>
+
+<script src="{{ 'buy-box-tiers.js' | asset_url }}" type="module"></script>
+
+{% stylesheet %}
+  .buy-box-tiers__tiers { display: flex; flex-direction: column; gap: var(--gap-sm); border: none; padding: 0; margin: 0; }
+  .buy-box-tiers__tier {
+    display: flex; align-items: center; justify-content: space-between;
+    border: var(--style-border-width) solid var(--color-border);
+    border-radius: var(--style-border-radius-inputs, 0);
+    padding: var(--padding-md); cursor: pointer;
+  }
+  .buy-box-tiers__tier--checked { border-color: var(--color-foreground); background: rgb(var(--color-foreground-rgb) / var(--opacity-5)); }
+  .buy-box-tiers__tier input { margin-inline-end: var(--gap-sm); }
+  .buy-box-tiers__tier-save { display: block; font-size: var(--font-size--xs); color: var(--color-foreground-secondary); }
+  .buy-box-tiers__price-was { opacity: var(--opacity-subdued-text); margin-inline-start: var(--gap-2xs); }
+  .buy-box-tiers__colors { display: flex; flex-direction: column; gap: var(--gap-sm); margin-block-start: var(--gap-md); }
+  .buy-box-tiers__error { color: var(--color-error, red); font-size: var(--font-size--sm); }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Buy Box Tiers",
+  "tag": null,
+  "settings": [
+    { "type": "text", "id": "color_option_name", "label": "Color option name", "default": "Color" },
+    { "type": "header", "content": "Tier 1" },
+    { "type": "text", "id": "tier_1_label", "label": "Label", "default": "1x CoolClip" },
+    { "type": "number", "id": "tier_1_quantity", "label": "Quantity", "default": 1 },
+    { "type": "number", "id": "tier_1_discount", "label": "Discount %", "default": 0 },
+    { "type": "header", "content": "Tier 2" },
+    { "type": "text", "id": "tier_2_label", "label": "Label", "default": "2x CoolClip" },
+    { "type": "number", "id": "tier_2_quantity", "label": "Quantity", "default": 2 },
+    { "type": "number", "id": "tier_2_discount", "label": "Discount %", "default": 28 },
+    { "type": "header", "content": "Tier 3" },
+    { "type": "text", "id": "tier_3_label", "label": "Label", "default": "3x CoolClip" },
+    { "type": "number", "id": "tier_3_quantity", "label": "Quantity", "default": 3 },
+    { "type": "number", "id": "tier_3_discount", "label": "Discount %", "default": 35 }
+  ]
+}
+{% endschema %}
