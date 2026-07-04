@@ -21,32 +21,28 @@
 >
   <fieldset class="buy-box-tiers__tiers">
     {% for i in (1..3) %}
-      {% liquid
-        case i
-          when 1
-            assign qty = block.settings.tier_1_quantity
-            assign discount = block.settings.tier_1_discount
-            assign label = block.settings.tier_1_label
-            assign badge = block.settings.tier_1_badge
-          when 2
-            assign qty = block.settings.tier_2_quantity
-            assign discount = block.settings.tier_2_discount
-            assign label = block.settings.tier_2_label
-            assign badge = block.settings.tier_2_badge
-          when 3
-            assign qty = block.settings.tier_3_quantity
-            assign discount = block.settings.tier_3_discount
-            assign label = block.settings.tier_3_label
-            assign badge = block.settings.tier_3_badge
-        endcase
+     {% liquid
+  case i
+    when 1
+      assign qty = block.settings.tier_1_quantity
+      assign discount = block.settings.tier_1_discount
+      assign label = block.settings.tier_1_label
+      assign badge = block.settings.tier_1_badge
+    when 2
+      assign qty = block.settings.tier_2_quantity
+      assign discount = block.settings.tier_2_discount
+      assign label = block.settings.tier_2_label
+      assign badge = block.settings.tier_2_badge
+    when 3
+      assign qty = block.settings.tier_3_quantity
+      assign discount = block.settings.tier_3_discount
+      assign label = block.settings.tier_3_label
+      assign badge = block.settings.tier_3_badge
+  endcase
 
-        if discount > 0
-          assign discount_amount = compare_price | times: discount | divided_by: 100
-          assign display_price = compare_price | minus: discount_amount
-        else
-          assign display_price = variant.price
-        endif
-      %}
+  assign discount_amount = variant.price | times: discount | divided_by: 100
+  assign display_price = variant.price | minus: discount_amount
+%}
       <label class="buy-box-tiers__tier{% if forloop.first %} buy-box-tiers__tier--checked{% endif %}" data-tier>
         <div class="buy-box-tiers__tier-row">
           <input
@@ -346,7 +342,7 @@
     { "type": "text", "id": "tier_1_label", "label": "Label", "default": "1x CoolClip" },
     { "type": "text", "id": "tier_1_badge", "label": "Badge (optional)", "default": "Spring Sale Last Day!" },
     { "type": "number", "id": "tier_1_quantity", "label": "Quantity", "default": 1 },
-    { "type": "number", "id": "tier_1_discount", "label": "Extra discount % (0 = just sale price)", "default": 0 },
+    { "type": "number", "id": "tier_1_discount", "label": "Discount % off original price", "default": 20 },
     { "type": "header", "content": "Tier 2" },
     { "type": "text", "id": "tier_2_label", "label": "Label", "default": "2x CoolClip" },
     { "type": "text", "id": "tier_2_badge", "label": "Badge (optional)" },
