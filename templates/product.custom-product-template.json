@@ -812,7 +812,7 @@
             "height": "fit",
             "custom_height": 100,
             "background_media": "none",
-            "background_color": "",
+            "background_color": "#0A2540",
             "video_position": "cover",
             "background_image_position": "cover",
             "toggle_overlay": false,
