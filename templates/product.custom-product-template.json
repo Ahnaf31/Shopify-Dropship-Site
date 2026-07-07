@@ -600,7 +600,7 @@
         "text_U3fpwN": {
           "type": "text",
           "settings": {
-            "text": "<h6>• USB-C RECHARGEABLE • ONLY 7 OZ / 200 G • 20,000+ UNITS SOLD</h6>",
+            "text": "<h6>• USB-C RECHARGEABLE</h6>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "left",
@@ -621,10 +621,62 @@
             "padding-inline-end": 0
           },
           "blocks": {}
+        },
+        "text_fQykxd": {
+          "type": "text",
+          "settings": {
+            "text": "<h6>• ONLY 7 OZ / 200 G</h6>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "tight",
+            "letter_spacing": "tight",
+            "case": "none",
+            "wrap": "nowrap",
+            "text_color": "#FCFDFE",
+            "background": true,
+            "background_color": "#0A2540",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_MdXHJi": {
+          "type": "text",
+          "settings": {
+            "text": "<h6>• 20,000+ UNITS SOLD</h6>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "tight",
+            "letter_spacing": "tight",
+            "case": "uppercase",
+            "wrap": "nowrap",
+            "text_color": "#FCFDFE",
+            "background": true,
+            "background_color": "#0A2540",
+            "corner_radius": 49,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "text_U3fpwN"
+        "text_U3fpwN",
+        "text_fQykxd",
+        "text_MdXHJi"
       ],
       "name": "t:names.marquee_section",
       "settings": {
