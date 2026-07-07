@@ -687,21 +687,10 @@
         "gap_between_elements": 15
       }
     },
-    "video_carousel_hzzzBw": {
+    "video_carousel_nxdnpH": {
       "type": "video-carousel",
       "blocks": {
-        "ugc_video_FG6mPR": {
-          "type": "ugc-video",
-          "settings": {
-            "source_type": "embed",
-            "embed_url": "https://www.youtube.com/shorts/mAd3d1A-kYA?feature=share",
-            "poster": "shopify://shop_images/Screenshot_2026-07-07_112738.png",
-            "aspect_ratio": "9/16",
-            "caption": ""
-          },
-          "blocks": {}
-        },
-        "ugc_video_EmCQAz": {
+        "ugc_video_YgzxRp": {
           "type": "ugc-video",
           "settings": {
             "source_type": "upload",
@@ -713,35 +702,31 @@
           },
           "blocks": {}
         },
-        "ugc_video_xEY9d8": {
-          "type": "ugc-video",
-          "settings": {
-            "source_type": "embed",
-            "embed_url": "https://www.youtube.com/shorts/mAd3d1A-kYA?feature=share",
-            "poster": "shopify://shop_images/Screenshot_2026-07-07_112738.png",
-            "aspect_ratio": "9/16",
-            "caption": ""
-          },
-          "blocks": {}
-        },
-        "ugc_video_pYRjnU": {
+        "ugc_video_gkCNTp": {
           "type": "ugc-video",
           "settings": {
             "source_type": "upload",
-            "video": "shopify://files/videos/d1473657dd254af9989f403ecacbe2a1.HD-1080p-7.2Mbps-80167697.mp4",
             "embed_url": "",
-            "poster": "shopify://shop_images/thumbnail2.png",
             "aspect_ratio": "9/16",
             "caption": ""
           },
           "blocks": {}
         },
-        "ugc_video_LkDQzy": {
+        "ugc_video_nUE4gd": {
           "type": "ugc-video",
           "settings": {
-            "source_type": "embed",
-            "embed_url": "https://www.youtube.com/shorts/mAd3d1A-kYA?feature=share",
-            "poster": "shopify://shop_images/Screenshot_2026-07-07_112738.png",
+            "source_type": "upload",
+            "embed_url": "",
+            "aspect_ratio": "9/16",
+            "caption": ""
+          },
+          "blocks": {}
+        },
+        "ugc_video_QCwxVD": {
+          "type": "ugc-video",
+          "settings": {
+            "source_type": "upload",
+            "embed_url": "",
             "aspect_ratio": "9/16",
             "caption": ""
           },
@@ -749,21 +734,21 @@
         }
       },
       "block_order": [
-        "ugc_video_FG6mPR",
-        "ugc_video_EmCQAz",
-        "ugc_video_xEY9d8",
-        "ugc_video_pYRjnU",
-        "ugc_video_LkDQzy"
+        "ugc_video_YgzxRp",
+        "ugc_video_gkCNTp",
+        "ugc_video_nUE4gd",
+        "ugc_video_QCwxVD"
       ],
       "name": "Video carousel",
       "settings": {
-        "heading": "See it in action",
+        "heading": "See CoolClip in Action",
         "heading_alignment": "center",
         "items_desktop": 4,
         "items_mobile": "1",
         "gap": 16,
         "radius": 12,
-        "color_scheme": ""
+        "background_color": "{{ settings.color_palette.background }}",
+        "text_color": "{{ settings.color_palette.foreground }}"
       }
     }
   },
@@ -771,6 +756,6 @@
     "main",
     "product_recommendations_qggXJq",
     "marquee_6NiqhW",
-    "video_carousel_hzzzBw"
+    "video_carousel_nxdnpH"
   ]
 }
