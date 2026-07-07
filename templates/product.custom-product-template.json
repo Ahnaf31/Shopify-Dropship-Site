@@ -886,6 +886,7 @@
             },
             "button_E4XXMQ": {
               "type": "button",
+              "disabled": true,
               "settings": {
                 "label": "Shop now",
                 "link": "shopify://collections/all",
@@ -928,7 +929,7 @@
         "section_height": "",
         "section_height_custom": 50,
         "background_media": "none",
-        "background_color": "",
+        "background_color": "#0A2540",
         "video_position": "cover",
         "background_image_position": "cover",
         "toggle_overlay": false,
@@ -940,8 +941,8 @@
         "border_opacity": 100,
         "border_color": "",
         "border_radius": 0,
-        "padding-block-start": 40,
-        "padding-block-end": 40
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     },
     "section_hakqqT": {
