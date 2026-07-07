@@ -1,5 +1,5 @@
 {%- doc -%}
-  UGC video item — supports Shopify-hosted upload OR external embed link (YouTube/Vimeo/direct URL).
+  UGC video item — supports Shopify-hosted upload OR external embed link (YouTube/Vimeo/Loom/direct URL).
 {%- enddoc -%}
 
 {% liquid
@@ -10,9 +10,14 @@
   elsif source_type == 'embed' and block.settings.embed_url != blank
     assign has_video = true
   endif
+
+  assign ratio_parts = block.settings.aspect_ratio | split: '/'
+  assign ratio_w = ratio_parts[0] | plus: 0
+  assign ratio_h = ratio_parts[1] | plus: 0
+  assign poster_height = 600 | times: ratio_h | divided_by: ratio_w
 %}
 
-<div class="ugc-video" data-ugc-video {{ block.shopify_attributes }}>
+<ugc-video class="ugc-video" data-ugc-video {{ block.shopify_attributes }}>
   <div class="ugc-video__frame" style="aspect-ratio: {{ block.settings.aspect_ratio | default: '9/16' }};">
     {% if has_video %}
       {% if source_type == 'upload' %}
@@ -34,15 +39,19 @@
               loading="lazy"
               alt=""
               width="600"
-              height="{{ 600 | divided_by: block.settings.aspect_ratio_w | times: block.settings.aspect_ratio_h }}"
+              height="{{ poster_height }}"
             >
           {% endif %}
         </div>
       {% endif %}
 
       <button type="button" class="ugc-video__play" data-ugc-play aria-label="Play video">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
+        <svg class="ugc-video__icon ugc-video__icon--play" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="white">
           <polygon points="6 3 20 12 6 21 6 3"></polygon>
+        </svg>
+        <svg class="ugc-video__icon ugc-video__icon--pause" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="white">
+          <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+          <rect x="14" y="4" width="4" height="16" rx="1"></rect>
         </svg>
       </button>
     {% else %}
@@ -53,7 +62,9 @@
   {% if block.settings.caption != blank %}
     <p class="ugc-video__caption">{{ block.settings.caption }}</p>
   {% endif %}
-</div>
+</ugc-video>
+
+<script src="{{ 'ugc-video.js' | asset_url }}" type="module"></script>
 
 {% stylesheet %}
   .ugc-video__frame {
@@ -80,26 +91,53 @@
     position: absolute;
     inset: 0;
     margin: auto;
-    width: 48px;
-    height: 48px;
-    background: rgba(0, 0, 0, 0.7);
+    width: 52px;
+    height: 52px;
+    background: rgba(0, 0, 0, 0.55);
     border: none;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: transform 0.2s ease, background 0.2s ease;
+    opacity: 1;
+    transition: opacity 0.25s ease, transform 0.2s ease, background 0.2s ease;
     z-index: 2;
   }
 
   .ugc-video__play:hover {
-    transform: scale(1.1);
-    background: #dc2626;
+    transform: scale(1.08);
+    background: rgba(0, 0, 0, 0.75);
   }
 
   .ugc-video__play.is-playing {
-    display: none;
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.35);
+  }
+
+  .ugc-video__frame:hover .ugc-video__play.is-playing,
+  .ugc-video__frame:focus-within .ugc-video__play.is-playing {
+    opacity: 1;
+  }
+
+  .ugc-video__icon {
+    position: absolute;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
+
+  .ugc-video__icon--pause {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  .ugc-video__play.is-playing .ugc-video__icon--play {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  .ugc-video__play.is-playing .ugc-video__icon--pause {
+    opacity: 1;
+    transform: scale(1);
   }
 
   .ugc-video__caption {
@@ -116,6 +154,18 @@
     color: #888;
     font-size: 13px;
   }
+
+  .ugc-video__error {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+    font-size: 13px;
+    text-align: center;
+    padding: 16px;
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -129,7 +179,7 @@
       "label": "Video source",
       "options": [
         { "value": "upload", "label": "Upload video" },
-        { "value": "embed", "label": "Embed link (YouTube/Vimeo/direct URL)" }
+        { "value": "embed", "label": "Embed link (YouTube/Vimeo/Loom/direct URL)" }
       ],
       "default": "upload"
     },
@@ -143,7 +193,7 @@
       "type": "url",
       "id": "embed_url",
       "label": "Embed URL",
-      "info": "YouTube, Vimeo, or direct .mp4 link",
+      "info": "YouTube, Vimeo, Loom, or direct .mp4 link",
       "visible_if": "{{ block.settings.source_type == 'embed' }}"
     },
     {
