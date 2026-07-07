@@ -686,11 +686,91 @@
         "padding-block-end": 5,
         "gap_between_elements": 15
       }
+    },
+    "video_carousel_hzzzBw": {
+      "type": "video-carousel",
+      "blocks": {
+        "ugc_video_FG6mPR": {
+          "type": "ugc-video",
+          "settings": {
+            "source_type": "embed",
+            "embed_url": "https://www.youtube.com/shorts/mAd3d1A-kYA?feature=share",
+            "poster": "shopify://shop_images/Screenshot_2026-07-07_112738.png",
+            "aspect_ratio": "9/16",
+            "caption": ""
+          },
+          "blocks": {}
+        },
+        "ugc_video_EmCQAz": {
+          "type": "ugc-video",
+          "settings": {
+            "source_type": "upload",
+            "video": "shopify://files/videos/d1473657dd254af9989f403ecacbe2a1.HD-1080p-7.2Mbps-80167697.mp4",
+            "embed_url": "",
+            "poster": "shopify://shop_images/thumbnail2.png",
+            "aspect_ratio": "9/16",
+            "caption": ""
+          },
+          "blocks": {}
+        },
+        "ugc_video_xEY9d8": {
+          "type": "ugc-video",
+          "settings": {
+            "source_type": "embed",
+            "embed_url": "https://www.youtube.com/shorts/mAd3d1A-kYA?feature=share",
+            "poster": "shopify://shop_images/Screenshot_2026-07-07_112738.png",
+            "aspect_ratio": "9/16",
+            "caption": ""
+          },
+          "blocks": {}
+        },
+        "ugc_video_pYRjnU": {
+          "type": "ugc-video",
+          "settings": {
+            "source_type": "upload",
+            "video": "shopify://files/videos/d1473657dd254af9989f403ecacbe2a1.HD-1080p-7.2Mbps-80167697.mp4",
+            "embed_url": "",
+            "poster": "shopify://shop_images/thumbnail2.png",
+            "aspect_ratio": "9/16",
+            "caption": ""
+          },
+          "blocks": {}
+        },
+        "ugc_video_LkDQzy": {
+          "type": "ugc-video",
+          "settings": {
+            "source_type": "embed",
+            "embed_url": "https://www.youtube.com/shorts/mAd3d1A-kYA?feature=share",
+            "poster": "shopify://shop_images/Screenshot_2026-07-07_112738.png",
+            "aspect_ratio": "9/16",
+            "caption": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ugc_video_FG6mPR",
+        "ugc_video_EmCQAz",
+        "ugc_video_xEY9d8",
+        "ugc_video_pYRjnU",
+        "ugc_video_LkDQzy"
+      ],
+      "name": "Video carousel",
+      "settings": {
+        "heading": "See it in action",
+        "heading_alignment": "center",
+        "items_desktop": 4,
+        "items_mobile": "1",
+        "gap": 16,
+        "radius": 12,
+        "color_scheme": ""
+      }
     }
   },
   "order": [
     "main",
     "product_recommendations_qggXJq",
-    "marquee_6NiqhW"
+    "marquee_6NiqhW",
+    "video_carousel_hzzzBw"
   ]
 }
