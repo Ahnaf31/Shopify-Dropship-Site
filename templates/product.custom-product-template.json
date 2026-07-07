@@ -862,7 +862,7 @@
             "text_QyWryz": {
               "type": "text",
               "settings": {
-                "text": "<p>Our team love the CoolClip® and are confident you will too! That's why we're offering a 30-Day, Risk-Free Guarantee. If you're not satisfied, we'll gladly issue a full refund in accordance with our Return & Refund Policy</p>",
+                "text": "<p><br/>Our team love the CoolClip® and are confident you will too! That's why we're offering a 30-Day, Risk-Free Guarantee. If you're not satisfied, we'll gladly issue a full refund in accordance with our Return & Refund Policy<br/><br/></p>",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -925,7 +925,7 @@
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
         "gap": 30,
-        "section_width": "full-width",
+        "section_width": "page-width",
         "section_height": "",
         "section_height_custom": 50,
         "background_media": "none",
@@ -942,7 +942,7 @@
         "border_color": "",
         "border_radius": 0,
         "padding-block-start": 0,
-        "padding-block-end": 30
+        "padding-block-end": 0
       }
     },
     "section_hakqqT": {
