@@ -682,9 +682,9 @@
       "settings": {
         "movement_direction": "normal",
         "background_color": "#0A2540",
-        "padding-block-start": 24,
+        "padding-block-start": 20,
         "padding-block-end": 20,
-        "gap_between_elements": 20
+        "gap_between_elements": 15
       }
     }
   },
