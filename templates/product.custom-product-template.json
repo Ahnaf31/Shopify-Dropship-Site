@@ -279,6 +279,151 @@
                 "icon_color": ""
               },
               "blocks": {}
+            },
+            "accordion_XhGqCa": {
+              "type": "accordion",
+              "name": "t:names.accordion",
+              "settings": {
+                "icon": "caret",
+                "dividers": true,
+                "divider_color": "",
+                "type_preset": "h6",
+                "background_color": "",
+                "text_color": "",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "accordion_row_i4bnyF": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "How it works",
+                    "open_by_default": true,
+                    "icon": "question_mark",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_pnwFaB": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>Our goal is for every customer to be totally satisfied with their purchase. If this isn't the case, let us know and we'll do our best to work with you to make it right.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "text_color": "",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_pnwFaB"
+                  ]
+                },
+                "accordion_row_bjWHGy": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "Specifications",
+                    "open_by_default": false,
+                    "icon": "star",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_dP7Qg7": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>Weight: 7 ounces (200 g)<br/>Battery Capacity: Up to 12 hours (4500 mAh)<br/>Battery Type: Rechargeable via USB-C</p><p><strong>Box Content:</strong></p><ul><li>1 x CoolClip™</li><li>1 x Type-C charging cable</li><li>1 x User Manual</li></ul>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "text_color": "",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_dP7Qg7"
+                  ]
+                },
+                "accordion_row_hCFpc4": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "Shipping & Return",
+                    "open_by_default": false,
+                    "icon": "truck",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_tj4C4W": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>We love our CoolClip™ and we're confident that you will too! In case things don't go as planned, we have a 30-day return and<a href=\"https://www.scopioe.com/\" title=\"Link add kore ne\">refund policy</a>to make things as easy as possible for you.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "text_color": "",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_tj4C4W"
+                  ]
+                }
+              },
+              "block_order": [
+                "accordion_row_i4bnyF",
+                "accordion_row_bjWHGy",
+                "accordion_row_hCFpc4"
+              ]
             }
           },
           "block_order": [
@@ -286,7 +431,8 @@
             "divider_VJhene",
             "buy_box_tiers_1",
             "text_HJWjUK",
-            "icon_DtGzVX"
+            "icon_DtGzVX",
+            "accordion_XhGqCa"
           ]
         }
       },
