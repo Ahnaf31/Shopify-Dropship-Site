@@ -3,7 +3,11 @@
   Native scroll-snap, no JS carousel library.
 {%- enddoc -%}
 
-<div class="video-carousel color-{{ section.settings.color_scheme }}" data-video-carousel>
+<div
+  class="video-carousel"
+  data-video-carousel
+  style="background-color: {{ section.settings.background_color }}; color: {{ section.settings.text_color }};"
+>
   {% if section.settings.heading != blank %}
     <h2 class="video-carousel__heading" style="text-align: {{ section.settings.heading_alignment }};">
       {{ section.settings.heading }}
@@ -128,7 +132,18 @@
     },
     { "type": "range", "id": "gap", "label": "Gap (px)", "min": 0, "max": 48, "step": 2, "default": 16 },
     { "type": "range", "id": "radius", "label": "Corner radius (px)", "min": 0, "max": 32, "step": 2, "default": 12 },
-    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" }
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "{{ settings.color_palette.background }}"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "{{ settings.color_palette.foreground }}"
+    }
   ],
   "blocks": [
     { "type": "@theme" }
