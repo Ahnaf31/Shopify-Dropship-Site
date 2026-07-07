@@ -116,7 +116,16 @@
       "default": "center"
     },
     { "type": "range", "id": "items_desktop", "label": "Items visible (desktop)", "min": 2, "max": 6, "step": 1, "default": 4 },
-    { "type": "range", "id": "items_mobile", "label": "Items visible (mobile)", "min": 1, "max": 2, "step": 1, "default": 1 },
+    {
+      "type": "select",
+      "id": "items_mobile",
+      "label": "Items visible (mobile)",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" }
+      ],
+      "default": "1"
+    },
     { "type": "range", "id": "gap", "label": "Gap (px)", "min": 0, "max": 48, "step": 2, "default": 16 },
     { "type": "range", "id": "radius", "label": "Corner radius (px)", "min": 0, "max": 32, "step": 2, "default": 12 },
     { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" }
@@ -127,7 +136,7 @@
   "presets": [
     {
       "name": "Video carousel",
-      "category": "Media",
+      "category": "Storytelling",
       "blocks": {
         "video_1": { "type": "ugc-video" },
         "video_2": { "type": "ugc-video" },
@@ -136,16 +145,6 @@
       },
       "block_order": ["video_1", "video_2", "video_3", "video_4"]
     }
-  ],"presets": [
-  {
-    "name": "Video carousel",
-   "category": "Product",
-    "blocks": {
-      "video_1": { "type": "ugc-video" },
-      "video_2": { "type": "ugc-video" },
-      "video_3": { "type": "ugc-video" },
-      "video_4": { "type": "ugc-video" }
-    },
-    "block_order": ["video_1", "video_2", "video_3", "video_4"]
-  }
-]
+  ]
+}
+{% endschema %}

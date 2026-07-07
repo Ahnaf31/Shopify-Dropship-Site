@@ -1,0 +1,175 @@
+{%- doc -%}
+  UGC video item — supports Shopify-hosted upload OR external embed link (YouTube/Vimeo/direct URL).
+{%- enddoc -%}
+
+{% liquid
+  assign source_type = block.settings.source_type
+  assign has_video = false
+  if source_type == 'upload' and block.settings.video != blank
+    assign has_video = true
+  elsif source_type == 'embed' and block.settings.embed_url != blank
+    assign has_video = true
+  endif
+%}
+
+<div class="ugc-video" data-ugc-video {{ block.shopify_attributes }}>
+  <div class="ugc-video__frame" style="aspect-ratio: {{ block.settings.aspect_ratio | default: '9/16' }};">
+    {% if has_video %}
+      {% if source_type == 'upload' %}
+        <video
+          class="ugc-video__player"
+          data-ugc-player
+          playsinline
+          preload="none"
+          poster="{{ block.settings.poster | image_url: width: 600 }}"
+        >
+          <source src="{{ block.settings.video.sources.last.url }}" type="video/mp4">
+        </video>
+      {% else %}
+        <div class="ugc-video__embed" data-ugc-embed data-embed-url="{{ block.settings.embed_url | escape }}">
+          {% if block.settings.poster != blank %}
+            <img
+              class="ugc-video__poster"
+              src="{{ block.settings.poster | image_url: width: 600 }}"
+              loading="lazy"
+              alt=""
+              width="600"
+              height="{{ 600 | divided_by: block.settings.aspect_ratio_w | times: block.settings.aspect_ratio_h }}"
+            >
+          {% endif %}
+        </div>
+      {% endif %}
+
+      <button type="button" class="ugc-video__play" data-ugc-play aria-label="Play video">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
+          <polygon points="6 3 20 12 6 21 6 3"></polygon>
+        </svg>
+      </button>
+    {% else %}
+      <div class="ugc-video__placeholder">No video selected</div>
+    {% endif %}
+  </div>
+
+  {% if block.settings.caption != blank %}
+    <p class="ugc-video__caption">{{ block.settings.caption }}</p>
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .ugc-video__frame {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #000;
+    cursor: pointer;
+  }
+
+  .ugc-video__player,
+  .ugc-video__embed iframe,
+  .ugc-video__poster {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: none;
+  }
+
+  .ugc-video__play {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 48px;
+    height: 48px;
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+    z-index: 2;
+  }
+
+  .ugc-video__play:hover {
+    transform: scale(1.1);
+    background: #dc2626;
+  }
+
+  .ugc-video__play.is-playing {
+    display: none;
+  }
+
+  .ugc-video__caption {
+    font-size: 13px;
+    margin-top: 8px;
+    text-align: center;
+  }
+
+  .ugc-video__placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #888;
+    font-size: 13px;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "UGC Video",
+  "tag": null,
+  "settings": [
+    {
+      "type": "select",
+      "id": "source_type",
+      "label": "Video source",
+      "options": [
+        { "value": "upload", "label": "Upload video" },
+        { "value": "embed", "label": "Embed link (YouTube/Vimeo/direct URL)" }
+      ],
+      "default": "upload"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Upload video",
+      "visible_if": "{{ block.settings.source_type == 'upload' }}"
+    },
+    {
+      "type": "url",
+      "id": "embed_url",
+      "label": "Embed URL",
+      "info": "YouTube, Vimeo, or direct .mp4 link",
+      "visible_if": "{{ block.settings.source_type == 'embed' }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "poster",
+      "label": "Poster/thumbnail image"
+    },
+    {
+      "type": "select",
+      "id": "aspect_ratio",
+      "label": "Aspect ratio",
+      "options": [
+        { "value": "9/16", "label": "Portrait (9:16)" },
+        { "value": "1/1", "label": "Square (1:1)" },
+        { "value": "16/9", "label": "Landscape (16:9)" }
+      ],
+      "default": "9/16"
+    },
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Caption (optional)"
+    }
+  ],
+  "presets": [
+    { "name": "UGC Video", "category": "Storytelling" }
+  ]
+}
+{% endschema %}
