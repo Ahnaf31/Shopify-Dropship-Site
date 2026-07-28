@@ -1,7 +1,7 @@
 /**
  * <buy-box-tiers>
  *
- * Quantity-tier buy box with per-unit variant selection.
+ * Quantity-tiers buy box with per-unit variant selection.
  *
  * Adapts to the product automatically:
  *   - product has no real variants  -> no selectors are rendered at all
@@ -13,10 +13,16 @@
 
 /** Notify themes that use Shopify's pub/sub bus (Dawn-style) as well. */
 import { CartLinesUpdateEvent, CartErrorEvent } from "@shopify/events";
+
+/**
+ * Best-effort notification for themes that rely on Shopify's legacy pub/sub bus.
+ * @param {{ data: unknown }} detail
+ */
 function publishIfAvailable(detail) {
   try {
-    if (typeof window.publish === "function" && window.PUB_SUB_EVENTS) {
-      window.publish(window.PUB_SUB_EVENTS.cartUpdate, detail.data);
+    const w = /** @type {any} */ (window);
+    if (typeof w.publish === "function" && w.PUB_SUB_EVENTS) {
+      w.publish(w.PUB_SUB_EVENTS.cartUpdate, detail.data);
     }
   } catch (e) {
     /* optional */
@@ -24,11 +30,43 @@ function publishIfAvailable(detail) {
 }
 
 class BuyBoxTiers extends HTMLElement {
+  /** @type {HTMLElement[]} */
+  tiers = [];
+  /** @type {HTMLTemplateElement | null} */
+  template = null;
+  /** @type {HTMLButtonElement | null} */
+  addBtn = null;
+  /** @type {HTMLElement | null} */
+  errorMsg = null;
+
+  /** @type {boolean} */
+  hasOptions = false;
+  /** @type {number} */
+  optionCount = 0;
+  /** @type {number} */
+  defaultVariantId = 0;
+  /** @type {boolean} */
+  redirectToCart = false;
+
+  /** @type {{ soldOut: string; unavailable: string; adding: string; add: string }} */
+  text = { soldOut: "", unavailable: "", adding: "", add: "" };
+
+  /** @type {any[]} */
+  variants = [];
+
   connectedCallback() {
-    this.tiers = Array.from(this.querySelectorAll("[data-tier]"));
-    this.template = this.querySelector("template[data-option-group-template]");
-    this.addBtn = this.querySelector('[ref="addToCartBtn"]');
-    this.errorMsg = this.querySelector('[ref="errorMsg"]');
+    this.tiers = /** @type {HTMLElement[]} */ (
+      Array.from(this.querySelectorAll("[data-tier]"))
+    );
+    this.template = /** @type {HTMLTemplateElement | null} */ (
+      this.querySelector("template[data-option-group-template]")
+    );
+    this.addBtn = /** @type {HTMLButtonElement | null} */ (
+      this.querySelector('[ref="addToCartBtn"]')
+    );
+    this.errorMsg = /** @type {HTMLElement | null} */ (
+      this.querySelector('[ref="errorMsg"]')
+    );
 
     this.hasOptions = this.dataset.hasOptions === "true";
     this.optionCount = parseInt(this.dataset.optionCount || "0", 10);
@@ -46,7 +84,9 @@ class BuyBoxTiers extends HTMLElement {
     this.variants = this.readVariantData();
 
     this.tiers.forEach((tier) => {
-      const input = tier.querySelector('input[type="radio"]');
+      const input = /** @type {HTMLInputElement | null} */ (
+        tier.querySelector('input[type="radio"]')
+      );
       if (input) input.addEventListener("change", () => this.onTierChange());
     });
 
@@ -61,7 +101,7 @@ class BuyBoxTiers extends HTMLElement {
     const node = this.querySelector("script[data-variant-data]");
     if (!node) return [];
     try {
-      const parsed = JSON.parse(node.textContent);
+      const parsed = JSON.parse(node.textContent ?? "");
       return Array.isArray(parsed) ? parsed : [];
     } catch (e) {
       return [];
@@ -72,12 +112,16 @@ class BuyBoxTiers extends HTMLElement {
 
   onTierChange() {
     this.tiers.forEach((tier) => {
-      const input = tier.querySelector('input[type="radio"]');
+      const input = /** @type {HTMLInputElement | null} */ (
+        tier.querySelector('input[type="radio"]')
+      );
       const isChecked = !!input && input.checked;
 
       tier.classList.toggle("buy-box-tiers__tier--checked", isChecked);
 
-      const list = tier.querySelector("[data-option-list]");
+      const list = /** @type {HTMLElement | null} */ (
+        tier.querySelector("[data-option-list]")
+      );
       if (!list) return; // product has no options: nothing to render
 
       if (!isChecked) {
@@ -85,16 +129,24 @@ class BuyBoxTiers extends HTMLElement {
         return;
       }
 
-      const qty = Math.max(1, parseInt(input.dataset.quantity, 10) || 1);
+      const qty = Math.max(1, parseInt(input?.dataset.quantity ?? "1", 10) || 1);
       list.innerHTML = "";
+
+      if (!this.template) return;
 
       for (let i = 0; i < qty; i++) {
         const clone = this.template.content.cloneNode(true);
         list.appendChild(clone);
       }
 
-      list.querySelectorAll("[data-option-group]").forEach((group) => {
-        group.querySelectorAll("[data-option-select]").forEach((select) => {
+      const groups = /** @type {HTMLElement[]} */ (
+        Array.from(list.querySelectorAll("[data-option-group]"))
+      );
+      groups.forEach((group) => {
+        const selects = /** @type {HTMLSelectElement[]} */ (
+          Array.from(group.querySelectorAll("[data-option-select]"))
+        );
+        selects.forEach((select) => {
           select.addEventListener("change", () => this.onOptionChange(group));
         });
         this.onOptionChange(group);
@@ -106,41 +158,54 @@ class BuyBoxTiers extends HTMLElement {
 
   /* -------------------------------------------------------- variants ---- */
 
+  /** @param {HTMLElement} group */
   getSelectedOptions(group) {
-    const selects = Array.from(group.querySelectorAll("[data-option-select]"));
+    const selects = /** @type {HTMLSelectElement[]} */ (
+      Array.from(group.querySelectorAll("[data-option-select]"))
+    );
     return selects.map((select) => select.value);
   }
 
+  /** @param {string[]} options */
   findVariant(options) {
     return this.variants.find((variant) => {
       if (!Array.isArray(variant.options)) return false;
       if (variant.options.length !== options.length) return false;
-      return variant.options.every((value, index) => value === options[index]);
+      return variant.options.every(
+        (/** @type {string} */ value, /** @type {number} */ index) =>
+          value === options[index],
+      );
     });
   }
 
   /**
    * Disable option values that cannot produce an available variant.
+   * @param {HTMLElement} group
    */
   updateAvailability(group) {
-    const selects = Array.from(group.querySelectorAll("[data-option-select]"));
+    const selects = /** @type {HTMLSelectElement[]} */ (
+      Array.from(group.querySelectorAll("[data-option-select]"))
+    );
 
     selects.forEach((select, index) => {
       const preceding = selects.slice(0, index).map((s) => s.value);
       let hasUsableSelection = false;
+      /** @type {string | null} */
       let firstUsable = null;
 
       Array.from(select.options).forEach((opt) => {
         const match = this.variants.find((variant) => {
           if (!Array.isArray(variant.options)) return false;
           if (variant.options[index] !== opt.value) return false;
-          return preceding.every((value, i) => variant.options[i] === value);
+          return preceding.every(
+            (value, i) => variant.options[i] === value,
+          );
         });
 
         const usable = !!match && match.available;
         opt.disabled = !usable;
 
-        const base = opt.dataset.baseLabel || opt.textContent.trim();
+        const base = opt.dataset.baseLabel || (opt.textContent ?? "").trim();
         opt.dataset.baseLabel = base;
         opt.textContent = usable ? base : `${base} - ${this.text.soldOut}`;
 
@@ -156,13 +221,18 @@ class BuyBoxTiers extends HTMLElement {
     });
   }
 
+  /** @param {HTMLElement} group */
   onOptionChange(group) {
     this.updateAvailability(group);
 
     const options = this.getSelectedOptions(group);
     const variant = this.findVariant(options);
-    const status = group.querySelector("[data-unit-status]");
-    const img = group.querySelector("[data-swatch-img]");
+    const status = /** @type {HTMLElement | null} */ (
+      group.querySelector("[data-unit-status]")
+    );
+    const img = /** @type {HTMLImageElement | null} */ (
+      group.querySelector("[data-swatch-img]")
+    );
 
     if (variant) {
       group.dataset.variantId = variant.id;
@@ -196,15 +266,19 @@ class BuyBoxTiers extends HTMLElement {
 
   getActiveTier() {
     return this.tiers.find((tier) => {
-      const input = tier.querySelector('input[type="radio"]');
-      return input && input.checked;
+      const input = /** @type {HTMLInputElement | null} */ (
+        tier.querySelector('input[type="radio"]')
+      );
+      return !!input && input.checked;
     });
   }
 
   getActiveGroups() {
     const tier = this.getActiveTier();
     if (!tier) return [];
-    return Array.from(tier.querySelectorAll("[data-option-group]"));
+    return /** @type {HTMLElement[]} */ (
+      Array.from(tier.querySelectorAll("[data-option-group]"))
+    );
   }
 
   isSelectionValid() {
@@ -212,7 +286,8 @@ class BuyBoxTiers extends HTMLElement {
     const groups = this.getActiveGroups();
     if (!groups.length) return false;
     return groups.every(
-      (group) => group.dataset.available === "true" && group.dataset.variantId,
+      (group) =>
+        group.dataset.available === "true" && !!group.dataset.variantId,
     );
   }
 
@@ -229,8 +304,11 @@ class BuyBoxTiers extends HTMLElement {
     const tier = this.getActiveTier();
     if (!tier) return [];
 
-    const input = tier.querySelector('input[type="radio"]');
-    const qty = Math.max(1, parseInt(input.dataset.quantity, 10) || 1);
+    const input = /** @type {HTMLInputElement | null} */ (
+      tier.querySelector('input[type="radio"]')
+    );
+    if (!input) return [];
+    const qty = Math.max(1, parseInt(input.dataset.quantity ?? "1", 10) || 1);
 
     // No real variants: add the single variant with the tier quantity.
     if (!this.hasOptions) {
@@ -241,7 +319,7 @@ class BuyBoxTiers extends HTMLElement {
     // Merge repeated variants into one line item with a higher quantity.
     const counts = new Map();
     for (const group of this.getActiveGroups()) {
-      const id = parseInt(group.dataset.variantId, 10);
+      const id = parseInt(group.dataset.variantId ?? "", 10);
       if (!id) return null;
       counts.set(id, (counts.get(id) || 0) + 1);
     }
@@ -249,6 +327,7 @@ class BuyBoxTiers extends HTMLElement {
     return Array.from(counts, ([id, quantity]) => ({ id, quantity }));
   }
 
+  /** @param {string} message */
   showError(message) {
     if (!this.errorMsg) return;
     this.errorMsg.textContent = message;
@@ -271,13 +350,16 @@ class BuyBoxTiers extends HTMLElement {
         "cart-drawer-component[data-section-id], cart-items-component[data-section-id], cart-icon-component[data-section-id], [id^='shopify-section-'] cart-drawer-component, [id^='shopify-section-'] cart-icon-component",
       )
       .forEach((el) => {
-        const explicit = el.dataset && el.dataset.sectionId;
+        const explicit =
+          el instanceof HTMLElement ? el.dataset.sectionId : undefined;
         if (explicit) {
           ids.add(explicit);
           return;
         }
         const wrapper = el.closest("[id^='shopify-section-']");
-        if (wrapper) ids.add(wrapper.id.replace("shopify-section-", ""));
+        if (wrapper && wrapper.id) {
+          ids.add(wrapper.id.replace("shopify-section-", ""));
+        }
       });
 
     // Horizon's default cart sections.
@@ -288,6 +370,7 @@ class BuyBoxTiers extends HTMLElement {
   }
 
   /** Swap in freshly rendered section HTML returned by /cart/add.js. */
+  /** @param {Record<string, string>} sections */
   renderSections(sections) {
     if (!sections) return;
 
@@ -309,21 +392,27 @@ class BuyBoxTiers extends HTMLElement {
       // Fall back to real, page-rendered sections.
       const target =
         document.getElementById(`shopify-section-${id}`) ||
-        document
+        (document
           .querySelector(`[data-section-id="${id}"]`)
-          ?.closest("[id^='shopify-section-']");
+          ?.closest("[id^='shopify-section-']") ?? null);
 
       if (!target) return;
 
       const fresh =
         doc.getElementById(`shopify-section-${id}`) ||
         doc.body.firstElementChild;
-      if (fresh) target.innerHTML = fresh.innerHTML;
+      if (fresh) {
+        /** @type {HTMLElement} */ (target).innerHTML = /** @type {HTMLElement} */ (
+          fresh
+        ).innerHTML;
+      }
     });
   }
 
   openCartDrawer() {
-    const drawer = document.querySelector("cart-drawer-component");
+    const drawer = /** @type {(HTMLElement & { open?: () => void }) | null} */ (
+      document.querySelector("cart-drawer-component")
+    );
     if (!drawer) return;
 
     if (typeof drawer.open === "function") {
@@ -332,7 +421,9 @@ class BuyBoxTiers extends HTMLElement {
     }
 
     // Horizon opens the drawer through its dialog component.
-    const dialog = drawer.querySelector("dialog");
+    const dialog = /** @type {HTMLDialogElement | null} */ (
+      drawer.querySelector("dialog")
+    );
     if (dialog && typeof dialog.showModal === "function" && !dialog.open) {
       dialog.showModal();
     }
@@ -347,6 +438,7 @@ class BuyBoxTiers extends HTMLElement {
       return;
     }
 
+    if (!this.addBtn) return;
     this.addBtn.dataset.busy = "true";
     this.addBtn.disabled = true;
     this.addBtn.textContent = this.text.adding;
@@ -407,7 +499,7 @@ class BuyBoxTiers extends HTMLElement {
       deferred.resolve({
         cart: cart
           ? CartLinesUpdateEvent.createCartFromAjaxResponse(cart)
-          : undefined,
+          : null,
         detail: {
           source: "buy-box-tiers",
           itemCount: cart ? cart.item_count : itemCount,
@@ -425,8 +517,10 @@ class BuyBoxTiers extends HTMLElement {
       deferred.reject(e); // Unresolved promises make cart-icon.js hang forever
       this.showError(e.message);
     } finally {
-      this.addBtn.dataset.busy = "false";
-      this.addBtn.textContent = this.text.add;
+      if (this.addBtn) {
+        this.addBtn.dataset.busy = "false";
+        this.addBtn.textContent = this.text.add;
+      }
       this.refreshButtonState();
     }
   }
