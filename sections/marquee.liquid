@@ -1,18 +1,14 @@
-
-
 <script
   src="{{ 'marquee.js' | asset_url }}"
   type="module"
   fetchpriority="low"
 ></script>
-
 {% liquid
   assign gap_between_elements = section.settings.gap_between_elements
   if section.settings.background_color != blank
     render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
   endif
 %}
-
 <div
   class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
 ></div>
@@ -23,7 +19,7 @@
     {% render 'gap-style', value: gap_between_elements, name: 'marquee-gap' %}
     --marquee-direction: {{ section.settings.movement_direction }};
   "
-  data-speed-factor="25"
+  data-speed-factor="{{ section.settings.speed_factor }}"
   data-movement-direction="{{ section.settings.movement_direction }}"
 >
   <div
@@ -43,35 +39,29 @@
     </div>
   </div>
 </marquee-component>
-
 {% stylesheet %}
   marquee-component {
     display: block;
     width: 100%;
     overflow: hidden;
   }
-
   .marquee__wrapper {
     display: flex;
     gap: var(--marquee-gap);
     width: fit-content;
     white-space: nowrap;
   }
-
   .marquee__content {
     min-width: max-content;
     display: flex;
     gap: var(--marquee-gap);
   }
-
   .marquee__content :is(p, h1, h2, h3, h4, h5, h6) {
     white-space: nowrap;
   }
-
   .marquee__content .marquee__repeated-items * {
     max-width: none;
   }
-
   .marquee__repeated-items {
     min-width: max-content;
     display: flex;
@@ -79,24 +69,20 @@
     align-items: center;
     justify-content: center;
   }
-
   .marquee__repeated-items > * {
     align-content: center;
   }
-
   @media (prefers-reduced-motion: no-preference) {
     marquee-component:not([data-disabled]) .marquee__wrapper {
       animation: marquee-motion var(--marquee-speed) linear infinite var(--marquee-direction);
     }
   }
-
   @keyframes marquee-motion {
     to {
       transform: translate3d(calc(-50% - (var(--marquee-gap) / 2)), 0, 0);
     }
   }
 {% endstylesheet %}
-
 {% schema %}
 {
   "name": "t:names.marquee",
@@ -133,6 +119,15 @@
         }
       ],
       "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "speed_factor",
+      "label": "t:settings.speed",
+      "min": 5,
+      "max": 50,
+      "step": 1,
+      "default": 25
     },
     {
       "type": "color",
