@@ -1,0 +1,688 @@
+{%- comment -%}
+  Feature Comparison Table Section
+  - Desktop: single CSS Grid table (explicit grid-column/grid-row placement per cell),
+    one column visually highlighted with a single seamless background panel that spans
+    the full column height (header through last row) — not per-cell backgrounds.
+  - Mobile: stacked cards, one card per feature, column values shown as a mini row inside each card.
+  - Columns are dynamic ("column" blocks) up to 4. Rows are dynamic ("row" blocks), unlimited.
+  - Each row block stores a value (icon + optional text) for up to 4 column slots via
+    dynamic key lookup (row.settings['icon_1'], row.settings['text_1'], etc.).
+  - No font-family is set anywhere in this file — the section inherits whatever font
+    is set site-wide from the theme's Fonts settings in the Shopify dashboard.
+{%- endcomment -%}
+
+{%- liquid
+  assign column_blocks = section.blocks | where: 'type', 'column'
+  assign row_blocks = section.blocks | where: 'type', 'row'
+  assign column_count = column_blocks.size
+  if column_count > 4
+    assign column_count = 4
+  endif
+  if column_count < 1
+    assign column_count = 1
+  endif
+-%}
+
+<style>
+  .comparison-table-{{ section.id }} {
+    background: {{ section.settings.background_color }};
+    padding: 64px 20px;
+  }
+
+  .comparison-table-{{ section.id }} .comparison-table-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .comparison-table-{{ section.id }} .comparison-table__eyebrow {
+    margin: 0 0 12px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: {{ section.settings.eyebrow_color }};
+  }
+
+  .comparison-table-{{ section.id }} .comparison-table__heading {
+    margin: 0 0 12px;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 800;
+    line-height: 1.15;
+    color: {{ section.settings.heading_color }};
+  }
+
+  .comparison-table-{{ section.id }} .comparison-table__subheading {
+    margin: 0 0 40px;
+    font-size: 16px;
+    color: {{ section.settings.subheading_color }};
+  }
+
+  /* ---------- Desktop table (single CSS Grid) ---------- */
+
+  .comparison-table-{{ section.id }} .comparison-table__desktop {
+    display: grid;
+    grid-template-columns: minmax(140px, 1.4fr) repeat({{ column_count }}, minmax(110px, 1fr));
+    position: relative;
+    text-align: left;
+    max-width: {{ section.settings.table_max_width }}px;
+    margin: 0 auto;
+  }
+
+  .comparison-table-{{ section.id }} .comparison-table__highlight-panel {
+    background: {{ section.settings.highlighted_bg_color }};
+    z-index: 0;
+    border-radius: 20px 20px 0px 0px;
+  }
+
+  .comparison-table-{{ section.id }} .comparison-table__cell {
+    position: relative;
+    z-index: 1;
+    padding: 18px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .comparison-table-{{ section.id }} .comparison-table__cell--feature-head,
+  .comparison-table-{{ section.id }} .comparison-table__cell--feature {
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .comparison-table-{{ section.id }} .comparison-table__cell--feature-head {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: {{ section.settings.column_label_color }};
+  }
+
+  .comparison-table-{{ section.id }} .comparison-table__cell--feature {
+    font-size: 15px;
+    font-weight: 500;
+    color: {{ section.settings.feature_text_color }};
+  }
+
+  /* Full-width underline across the entire header row */
+  .comparison-table-{{ section.id }} .comparison-table__cell--feature-head,
+  .comparison-table-{{ section.id }} .comparison-table__cell--head {
+    padding-bottom: 10px;
+    align-items: center;
+    border-bottom: 2px solid {{ section.settings.header_underline_color }};
+  }
+
+  .comparison-table-{{ section.id }} .comparison-table__column-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: {{ section.settings.column_label_color }};
+  }
+
+  .comparison-table-{{ section.id }} .comparison-table__column-label.is-highlighted {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 16px;
+    border-radius: 6px;
+    background: {{ section.settings.highlighted_header_bg_color }};
+    color: {{ section.settings.highlighted_header_text_color }};
+  }
+
+  /* Row dividers for body rows only (header divider handled above) */
+  .comparison-table-{{ section.id }} .comparison-table__cell--feature,
+  .comparison-table-{{ section.id }} .comparison-table__cell--value {
+    border-bottom: 1px solid {{ section.settings.border_color }};
+  }
+
+  .comparison-table-{{ section.id }} .comparison-table__value-text {
+    font-size: 14px;
+    color: {{ section.settings.value_text_color }};
+  }
+
+  .comparison-table-{{ section.id }} .comparison-table__cell--value.is-highlighted .comparison-table__value-text {
+    font-weight: 700;
+    color: {{ section.settings.heading_color }};
+  }
+
+  .comparison-table-{{ section.id }} .comparison-table__icon {
+    font-size: 15px;
+    font-weight: 700;
+    margin-right: 6px;
+    line-height: 1;
+  }
+
+  .comparison-table-{{ section.id }} .comparison-table__icon--check {
+    color: {{ section.settings.check_color }};
+  }
+
+  .comparison-table-{{ section.id }} .comparison-table__icon--cross {
+    color: {{ section.settings.cross_color }};
+  }
+
+  .comparison-table-{{ section.id }} .comparison-table__placeholder {
+    padding: 40px;
+    color: {{ section.settings.column_label_color }};
+    font-size: 14px;
+  }
+
+  /* ---------- Mobile cards ---------- */
+
+  .comparison-table-{{ section.id }} .comparison-table__mobile {
+    display: none;
+    text-align: left;
+  }
+
+  .comparison-table-{{ section.id }} .comparison-table__card {
+    background: #fff;
+    border: 1px solid {{ section.settings.border_color }};
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 14px;
+  }
+
+  .comparison-table-{{ section.id }} .comparison-table__card-title {
+    margin: 0 0 14px;
+    font-size: 16px;
+    font-weight: 700;
+    color: {{ section.settings.feature_text_color }};
+  }
+
+  .comparison-table-{{ section.id }} .comparison-table__card-columns {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .comparison-table-{{ section.id }} .comparison-table__card-col {
+    flex: 1;
+    min-width: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 8px;
+    border-radius: 8px;
+  }
+
+  /* .comparison-table-{{ section.id }} .comparison-table__card-col.is-highlighted {
+    background: {{ section.settings.highlighted_bg_color }};
+  } */
+  .comparison-table-{{ section.id }} .comparison-table__card-col.is-highlighted {
+  background: rgba(28, 107, 143, 0.06);
+}
+
+  .comparison-table-{{ section.id }} .comparison-table__column-label--card {
+    font-size: 11px;
+  }
+
+/* Replace this existing rule: */
+.comparison-table-{{ section.id }} .comparison-table__column-label--card.is-highlighted {
+  background: none;
+  color: #1B5E7A;
+  padding: 0;
+  border-radius: 0;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+  .comparison-table-{{ section.id }} .comparison-table__card-value {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    text-align: center;
+  }
+
+  /* ---------- Breakpoint ---------- */
+
+  @media screen and (max-width: 749px) {
+    .comparison-table-{{ section.id }} {
+      padding: 40px 16px;
+    }
+
+    .comparison-table-{{ section.id }} .comparison-table__desktop {
+      display: none;
+    }
+
+    .comparison-table-{{ section.id }} .comparison-table__mobile {
+      display: block;
+    }
+
+    .comparison-table-{{ section.id }} .comparison-table__heading {
+      font-size: 26px;
+    }
+  }
+</style>
+
+<div class="comparison-table-{{ section.id }} comparison-table-section">
+  <div class="comparison-table-wrap page-width">
+
+    {%- if section.settings.eyebrow_text != blank -%}
+      <p class="comparison-table__eyebrow">{{ section.settings.eyebrow_text }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.heading != blank -%}
+      <h2 class="comparison-table__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    {%- if section.settings.subheading != blank -%}
+      <p class="comparison-table__subheading">{{ section.settings.subheading }}</p>
+    {%- endif -%}
+
+    {%- if column_blocks.size > 0 and row_blocks.size > 0 -%}
+
+      <!-- Desktop table: every cell is placed on an explicit grid-column / grid-row,
+           so the highlight panel can span grid-row 1/-1 for a single seamless background -->
+      <div class="comparison-table__desktop" role="table" aria-label="{{ section.settings.heading | escape }}">
+
+        {%- for column in column_blocks limit: 4 -%}
+          {%- if column.settings.highlighted -%}
+            <div
+              class="comparison-table__highlight-panel"
+              style="grid-column: {{ forloop.index | plus: 1 }}; grid-row: 1 / -1;"
+              aria-hidden="true"
+            ></div>
+          {%- endif -%}
+        {%- endfor -%}
+
+        <div class="comparison-table__cell comparison-table__cell--feature-head" style="grid-column: 1; grid-row: 1;" role="columnheader">
+          {{ section.settings.feature_column_label }}
+        </div>
+        {%- for column in column_blocks limit: 4 -%}
+          <div
+            class="comparison-table__cell comparison-table__cell--head"
+            style="grid-column: {{ forloop.index | plus: 1 }}; grid-row: 1;"
+            role="columnheader"
+            {{ column.shopify_attributes }}
+          >
+            <span class="comparison-table__column-label{% if column.settings.highlighted %} is-highlighted{% endif %}">
+              {{ column.settings.label }}
+            </span>
+          </div>
+        {%- endfor -%}
+
+        {%- for row in row_blocks -%}
+          {%- assign row_line = forloop.index | plus: 1 -%}
+          <div class="comparison-table__cell comparison-table__cell--feature" style="grid-column: 1; grid-row: {{ row_line }};" role="rowheader" {{ row.shopify_attributes }}>
+            {{ row.settings.feature_name }}
+          </div>
+          {%- for column in column_blocks limit: 4 -%}
+            {%- liquid
+              assign col_index = forloop.index
+              assign icon_key = 'icon_' | append: col_index
+              assign text_key = 'text_' | append: col_index
+              assign icon_value = row.settings[icon_key]
+              assign text_value = row.settings[text_key]
+            -%}
+            <div
+              class="comparison-table__cell comparison-table__cell--value{% if column.settings.highlighted %} is-highlighted{% endif %}"
+              style="grid-column: {{ col_index | plus: 1 }}; grid-row: {{ row_line }};"
+              role="cell"
+            >
+              {%- if icon_value == 'check' -%}
+                <span class="comparison-table__icon comparison-table__icon--check" aria-hidden="true">&#10003;</span>
+              {%- elsif icon_value == 'cross' -%}
+                <span class="comparison-table__icon comparison-table__icon--cross" aria-hidden="true">&#10007;</span>
+              {%- endif -%}
+              {%- if text_value != blank -%}
+                <span class="comparison-table__value-text">{{ text_value }}</span>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        {%- endfor -%}
+      </div>
+
+      <!-- Mobile cards -->
+      <div class="comparison-table__mobile">
+        {%- for row in row_blocks -%}
+          <div class="comparison-table__card" {{ row.shopify_attributes }}>
+            <p class="comparison-table__card-title">{{ row.settings.feature_name }}</p>
+            <div class="comparison-table__card-columns">
+              {%- for column in column_blocks limit: 4 -%}
+                {%- liquid
+                  assign col_index = forloop.index
+                  assign icon_key = 'icon_' | append: col_index
+                  assign text_key = 'text_' | append: col_index
+                  assign icon_value = row.settings[icon_key]
+                  assign text_value = row.settings[text_key]
+                -%}
+                <div class="comparison-table__card-col{% if column.settings.highlighted %} is-highlighted{% endif %}">
+                  <span class="comparison-table__column-label comparison-table__column-label--card{% if column.settings.highlighted %} is-highlighted{% endif %}">
+                    {{ column.settings.label }}
+                  </span>
+                  <span class="comparison-table__card-value">
+                    {%- if icon_value == 'check' -%}
+                      <span class="comparison-table__icon comparison-table__icon--check" aria-hidden="true">&#10003;</span>
+                    {%- elsif icon_value == 'cross' -%}
+                      <span class="comparison-table__icon comparison-table__icon--cross" aria-hidden="true">&#10007;</span>
+                    {%- endif -%}
+                    {%- if text_value != blank -%}
+                      <span class="comparison-table__value-text">{{ text_value }}</span>
+                    {%- endif -%}
+                  </span>
+                </div>
+              {%- endfor -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+
+    {%- else -%}
+      {%- if section.settings.heading == blank -%}
+        <div class="comparison-table__placeholder">
+          Add "column" and "row" blocks to build your comparison table.
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Feature comparison table",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Eyebrow text",
+      "default": "WHY COOLCLIP?"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Not all fans are created equal"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "See how CoolClip stacks up against the alternatives."
+    },
+    {
+      "type": "text",
+      "id": "feature_column_label",
+      "label": "Feature column label",
+      "default": "FEATURE"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "table_max_width",
+      "label": "Table max width (px)",
+      "min": 600,
+      "max": 1100,
+      "step": 20,
+      "default": 880
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background",
+      "default": "#EAF4F7"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow text color",
+      "default": "#1C6EA4"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#1A1A1A"
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading color",
+      "default": "#1C6EA4"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Row divider color (body rows)",
+      "default": "#E1E1E1"
+    },
+    {
+      "type": "color",
+      "id": "header_underline_color",
+      "label": "Header row underline color",
+      "default": "#1A1A1A"
+    },
+    {
+      "type": "color",
+      "id": "feature_text_color",
+      "label": "Feature name text color",
+      "default": "#1A1A1A"
+    },
+    {
+      "type": "color",
+      "id": "value_text_color",
+      "label": "Value text color",
+      "default": "#4B4B4B"
+    },
+    {
+      "type": "color",
+      "id": "column_label_color",
+      "label": "Non-highlighted column label color",
+      "default": "#6B7280"
+    },
+    {
+      "type": "color",
+      "id": "check_color",
+      "label": "Checkmark color",
+      "default": "#1E824C"
+    },
+    {
+      "type": "color",
+      "id": "cross_color",
+      "label": "Cross color",
+      "default": "#E4572E"
+    },
+    {
+      "type": "color",
+      "id": "highlighted_bg_color",
+      "label": "Highlighted column background",
+      "default": "#DCE9F2"
+    },
+    {
+      "type": "color",
+      "id": "highlighted_header_bg_color",
+      "label": "Highlighted column header badge background",
+      "default": "#1B5E7A"
+    },
+    {
+      "type": "color",
+      "id": "highlighted_header_text_color",
+      "label": "Highlighted column header badge text color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Column",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Column label",
+          "default": "COLUMN"
+        },
+        {
+          "type": "checkbox",
+          "id": "highlighted",
+          "label": "Highlight this column",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "row",
+      "name": "Feature row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "feature_name",
+          "label": "Feature name",
+          "default": "Feature name"
+        },
+        {
+          "type": "header",
+          "content": "Column 1 value"
+        },
+        {
+          "type": "select",
+          "id": "icon_1",
+          "label": "Icon",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "check", "label": "Checkmark" },
+            { "value": "cross", "label": "Cross" }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "text",
+          "id": "text_1",
+          "label": "Text (optional, shown next to or instead of icon)"
+        },
+        {
+          "type": "header",
+          "content": "Column 2 value"
+        },
+        {
+          "type": "select",
+          "id": "icon_2",
+          "label": "Icon",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "check", "label": "Checkmark" },
+            { "value": "cross", "label": "Cross" }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "text",
+          "id": "text_2",
+          "label": "Text (optional, shown next to or instead of icon)"
+        },
+        {
+          "type": "header",
+          "content": "Column 3 value"
+        },
+        {
+          "type": "select",
+          "id": "icon_3",
+          "label": "Icon",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "check", "label": "Checkmark" },
+            { "value": "cross", "label": "Cross" }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "text",
+          "id": "text_3",
+          "label": "Text (optional, shown next to or instead of icon)"
+        },
+        {
+          "type": "header",
+          "content": "Column 4 value"
+        },
+        {
+          "type": "select",
+          "id": "icon_4",
+          "label": "Icon",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "check", "label": "Checkmark" },
+            { "value": "cross", "label": "Cross" }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "text",
+          "id": "text_4",
+          "label": "Text (optional, shown next to or instead of icon)"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 24,
+  "presets": [
+    {
+      "name": "Feature comparison table",
+      "blocks": [
+        { "type": "column", "settings": { "label": "COOLCLIP\u00ae", "highlighted": true } },
+        { "type": "column", "settings": { "label": "NECK FANS", "highlighted": false } },
+        { "type": "column", "settings": { "label": "HANDHELD FANS", "highlighted": false } },
+        {
+          "type": "row",
+          "settings": {
+            "feature_name": "Hands-free",
+            "icon_1": "check", "text_1": "",
+            "icon_2": "check", "text_2": "",
+            "icon_3": "cross", "text_3": ""
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "feature_name": "Under-shirt evaporative cooling",
+            "icon_1": "check", "text_1": "",
+            "icon_2": "cross", "text_2": "",
+            "icon_3": "cross", "text_3": ""
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "feature_name": "12+ hour battery",
+            "icon_1": "check", "text_1": "",
+            "icon_2": "cross", "text_2": "(3-6hr)",
+            "icon_3": "cross", "text_3": "(2-4hr)"
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "feature_name": "Ultra Light Weight",
+            "icon_1": "none", "text_1": "7 oz",
+            "icon_2": "none", "text_2": "8-12 oz",
+            "icon_3": "none", "text_3": "4-6 oz"
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "feature_name": "Reduce Sweating",
+            "icon_1": "none", "text_1": "Whole body",
+            "icon_2": "none", "text_2": "only neck",
+            "icon_3": "none", "text_3": "limited"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
