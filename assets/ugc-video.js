@@ -6,7 +6,7 @@ class UgcVideo extends HTMLElement {
     this.embedContainer = this.querySelector("[data-ugc-embed]");
     this.userPlaying = false;
 
-    this.frame?.addEventListener("click", () => this.toggle());
+    this.frame?.addEventListener("click", () => this.handleFrameClick());
     this.frame?.addEventListener("mouseenter", () => this.previewPlay());
     this.frame?.addEventListener("mouseleave", () => this.previewPause());
 
@@ -15,6 +15,22 @@ class UgcVideo extends HTMLElement {
       this.setPlayingState(false);
       this.player.currentTime = 0;
     });
+  }
+
+  handleFrameClick() {
+    const carousel = this.closest("video-carousel");
+    if (carousel && typeof carousel.openLightbox === "function") {
+      // Stop the muted hover-preview before handing off to the lightbox.
+      this.previewPause();
+      this.dispatchEvent(
+        new CustomEvent("ugcvideo:open", {
+          bubbles: true,
+          detail: { videoEl: this },
+        }),
+      );
+      return;
+    }
+    this.toggle();
   }
 
   // Muted hover preview — only for native uploaded videos, and only before

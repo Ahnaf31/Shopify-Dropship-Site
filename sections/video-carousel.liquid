@@ -1,6 +1,8 @@
 {%- doc -%}
   Video carousel — heading + horizontally scrolling row of nested @theme blocks (ugc-video).
-  Native scroll-snap, no JS carousel library. Prev/next arrows on desktop, dot indicators on mobile.
+  Native scroll-snap, no JS carousel library. Prev/next arrows on all screen sizes.
+  Clicking a video opens a full-screen story-style lightbox with up/down navigation
+  between videos in the carousel.
 {%- enddoc -%}
 
 {% liquid
@@ -22,8 +24,8 @@
 
   <div class="video-carousel__wrapper">
     <button type="button" class="video-carousel__arrow video-carousel__arrow--prev is-hidden" data-carousel-prev aria-label="Previous">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <polyline points="15 18 9 12 15 6"></polyline>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m15 18-6-6 6-6"></path>
       </svg>
     </button>
 
@@ -36,16 +38,78 @@
     </div>
 
     <button type="button" class="video-carousel__arrow video-carousel__arrow--next" data-carousel-next aria-label="Next">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <polyline points="9 18 15 12 9 6"></polyline>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m9 18 6-6-6-6"></path>
       </svg>
     </button>
   </div>
 
-  <div class="video-carousel__dots" data-carousel-dots></div>
+  <div class="video-carousel__lightbox" data-carousel-lightbox hidden>
+    <div class="video-carousel__lightbox-backdrop" data-lightbox-close></div>
+
+    <div class="video-carousel__lightbox-stage">
+      <div class="video-carousel__lightbox-progress" data-lightbox-progress-track></div>
+
+      <div class="video-carousel__lightbox-topbar">
+        <div class="video-carousel__lightbox-topbar-left">
+          <button type="button" class="video-carousel__lightbox-btn" data-lightbox-playpause aria-label="Pause">
+            <svg class="video-carousel__lightbox-icon video-carousel__lightbox-icon--pause" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white">
+              <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+              <rect x="14" y="4" width="4" height="16" rx="1"></rect>
+            </svg>
+            <svg class="video-carousel__lightbox-icon video-carousel__lightbox-icon--play" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white" style="display:none;">
+              <polygon points="6 3 20 12 6 21 6 3"></polygon>
+            </svg>
+          </button>
+          <button type="button" class="video-carousel__lightbox-btn" data-lightbox-mute aria-label="Mute">
+            <svg class="video-carousel__lightbox-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path data-lightbox-mute-on d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              <path data-lightbox-mute-on d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+              <line data-lightbox-mute-off x1="23" y1="1" x2="1" y2="23" style="display:none;"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="video-carousel__lightbox-topbar-right">
+          <a href="{{ routes.cart_url }}" class="video-carousel__lightbox-btn video-carousel__lightbox-cart" aria-label="Cart">
+            <svg class="video-carousel__lightbox-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            {% if cart.item_count > 0 %}
+              <span class="video-carousel__lightbox-cart-badge">{{ cart.item_count }}</span>
+            {% endif %}
+          </a>
+          <button type="button" class="video-carousel__lightbox-btn" data-lightbox-close aria-label="Close">
+            <svg class="video-carousel__lightbox-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="video-carousel__lightbox-media" data-lightbox-media></div>
+
+      <div class="video-carousel__lightbox-vertical-nav">
+        <button type="button" class="video-carousel__lightbox-btn video-carousel__lightbox-btn--round" data-lightbox-prev-v aria-label="Previous video">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m18 15-6-6-6 6"></path>
+          </svg>
+        </button>
+        <button type="button" class="video-carousel__lightbox-btn video-carousel__lightbox-btn--round" data-lightbox-next-v aria-label="Next video">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m6 9 6 6 6-6"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
 </video-carousel>
 
 <script src="{{ 'video-carousel.js' | asset_url }}" type="module"></script>
+<script src="{{ 'ugc-video.js' | asset_url }}" type="module"></script>
 
 {% stylesheet %}
   .video-carousel {
@@ -92,68 +156,192 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: none;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid var(--color-border);
+    background: #fff;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    color: #374151;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    z-index: 3;
+    z-index: 10;
+    opacity: 1;
+    transition: background-color 0.2s ease;
+  }
+
+  .video-carousel__arrow:hover {
+    background: #f9fafb;
+  }
+
+  .video-carousel__arrow svg {
+    width: 24px;
+    height: 24px;
   }
 
   .video-carousel__arrow--next {
-    right: 8px;
+    right: 16px;
   }
 
   .video-carousel__arrow--prev {
-    left: 8px;
+    left: 16px;
   }
 
   .video-carousel__arrow.is-hidden {
     display: none;
   }
 
-  .video-carousel__dots {
-    display: none;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 16px;
-  }
-
-  .video-carousel__dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--color-border);
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    transition: background 0.2s ease, transform 0.2s ease;
-  }
-
-  .video-carousel__dot.is-active {
-    background: var(--color-foreground);
-    transform: scale(1.3);
-  }
-
   @media screen and (max-width: 749px) {
-  .video-carousel__arrow {
+    .video-carousel__track .ugc-video__frame {
+      aspect-ratio: 3 / 4 !important;
+      max-height: 420px;
+    }
+  }
+
+  /* ---------------------------------------------------------- lightbox --- */
+
+  .video-carousel__lightbox[hidden] {
     display: none;
   }
 
-  .video-carousel__dots {
+  .video-carousel__lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
     display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .video-carousel__track .ugc-video__frame {
-    aspect-ratio: 3 / 4 !important;
-    max-height: 420px;
+  .video-carousel__lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    cursor: pointer;
   }
 
+  .video-carousel__lightbox-stage {
+    position: relative;
+    z-index: 1;
+    width: min(420px, 92vw);
+    height: min(88vh, 746px);
+    border-radius: 16px;
+    overflow: hidden;
+    background: #000;
   }
+
+  .video-carousel__lightbox-media {
+    position: absolute;
+    inset: 0;
+  }
+
+  .video-carousel__lightbox-media video,
+  .video-carousel__lightbox-media iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: none;
+  }
+
+  .video-carousel__lightbox-progress {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    display: flex;
+    gap: 4px;
+    z-index: 5;
+  }
+
+  .video-carousel__lightbox-progress-segment {
+    flex: 1;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.35);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .video-carousel__lightbox-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: #fff;
+    border-radius: 2px;
+  }
+
+  .video-carousel__lightbox-topbar {
+    position: absolute;
+    top: 20px;
+    left: 16px;
+    right: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 5;
+  }
+
+  .video-carousel__lightbox-topbar-left,
+  .video-carousel__lightbox-topbar-right {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .video-carousel__lightbox-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.45);
+    border: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .video-carousel__lightbox-btn--round {
+    background: #fff;
+    color: #374151;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  }
+
+  .video-carousel__lightbox-cart {
+    position: relative;
+    text-decoration: none;
+  }
+
+  .video-carousel__lightbox-cart-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: #fff;
+    color: #111;
+    font-size: 11px;
+    font-weight: 700;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .video-carousel__lightbox-vertical-nav {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 5;
+  }
+  .video-carousel__lightbox-media {
+  cursor: pointer;
+}
 {% endstylesheet %}
 
 {% schema %}
@@ -183,7 +371,7 @@
         { "value": "1", "label": "1 (with peek)" },
         { "value": "2", "label": "2" }
       ],
-      "default": "1"
+      "default": "2"
     },
     { "type": "range", "id": "gap", "label": "Gap (px)", "min": 0, "max": 48, "step": 2, "default": 16 },
     { "type": "range", "id": "radius", "label": "Corner radius (px)", "min": 0, "max": 32, "step": 2, "default": 12 },
