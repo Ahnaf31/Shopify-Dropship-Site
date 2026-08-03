@@ -127,8 +127,8 @@
             "email_signup_yLEc4Y": {
               "type": "email-signup",
               "settings": {
-                "width": "fill",
-                "custom_width": 50,
+                "width": "custom",
+                "custom_width": 80,
                 "heading": "",
                 "heading_text_color": "",
                 "heading_preset": "h3",
