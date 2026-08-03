@@ -129,7 +129,10 @@ class BuyBoxTiers extends HTMLElement {
         return;
       }
 
-      const qty = Math.max(1, parseInt(input?.dataset.quantity ?? "1", 10) || 1);
+      const qty = Math.max(
+        1,
+        parseInt(input?.dataset.quantity ?? "1", 10) || 1,
+      );
       list.innerHTML = "";
 
       if (!this.template) return;
@@ -197,9 +200,7 @@ class BuyBoxTiers extends HTMLElement {
         const match = this.variants.find((variant) => {
           if (!Array.isArray(variant.options)) return false;
           if (variant.options[index] !== opt.value) return false;
-          return preceding.every(
-            (value, i) => variant.options[i] === value,
-          );
+          return preceding.every((value, i) => variant.options[i] === value);
         });
 
         const usable = !!match && match.available;
@@ -303,28 +304,37 @@ class BuyBoxTiers extends HTMLElement {
   buildItems() {
     const tier = this.getActiveTier();
     if (!tier) return [];
-
     const input = /** @type {HTMLInputElement | null} */ (
       tier.querySelector('input[type="radio"]')
     );
     if (!input) return [];
     const qty = Math.max(1, parseInt(input.dataset.quantity ?? "1", 10) || 1);
+    const tierLabel =
+      tier.querySelector(".buy-box-tiers__tier-label")?.textContent?.trim() ||
+      "Bundle";
 
-    // No real variants: add the single variant with the tier quantity.
     if (!this.hasOptions) {
       if (!this.defaultVariantId) return [];
-      return [{ id: this.defaultVariantId, quantity: qty }];
+      return [
+        {
+          id: this.defaultVariantId,
+          quantity: qty,
+          properties: { _Bundle: tierLabel },
+        },
+      ];
     }
 
-    // Merge repeated variants into one line item with a higher quantity.
     const counts = new Map();
     for (const group of this.getActiveGroups()) {
       const id = parseInt(group.dataset.variantId ?? "", 10);
       if (!id) return null;
       counts.set(id, (counts.get(id) || 0) + 1);
     }
-
-    return Array.from(counts, ([id, quantity]) => ({ id, quantity }));
+    return Array.from(counts, ([id, quantity]) => ({
+      id,
+      quantity,
+      properties: { _Bundle: tierLabel },
+    }));
   }
 
   /** @param {string} message */
@@ -394,7 +404,8 @@ class BuyBoxTiers extends HTMLElement {
         document.getElementById(`shopify-section-${id}`) ||
         (document
           .querySelector(`[data-section-id="${id}"]`)
-          ?.closest("[id^='shopify-section-']") ?? null);
+          ?.closest("[id^='shopify-section-']") ??
+          null);
 
       if (!target) return;
 
@@ -402,9 +413,8 @@ class BuyBoxTiers extends HTMLElement {
         doc.getElementById(`shopify-section-${id}`) ||
         doc.body.firstElementChild;
       if (fresh) {
-        /** @type {HTMLElement} */ (target).innerHTML = /** @type {HTMLElement} */ (
-          fresh
-        ).innerHTML;
+        /** @type {HTMLElement} */ (target).innerHTML =
+          /** @type {HTMLElement} */ (fresh).innerHTML;
       }
     });
   }

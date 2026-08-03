@@ -136,17 +136,27 @@
               {% endif %}
             </span>
           </div>
+
+          {% liquid
+            assign option_names = product.options_with_values | map: 'name'
+            assign option_names_joined = option_names | join: ' & '
+            if option_names.size > 0
+              assign options_heading = 'Choose your ' | append: option_names_joined
+            else
+              assign options_heading = 'Choose your options'
+            endif
+          %}
           {% comment %} Option selectors only exist when the product actually has options {% endcomment %}
-          {% if has_options %}
-            <div class="buy-box-tiers__tier-colors-wrap" data-tier-colors-wrap>
-              <div class="buy-box-tiers__tier-colors" data-tier-colors>
-                {% if block.settings.options_heading != blank %}
-                  <span class="buy-box-tiers__color-heading">{{ block.settings.options_heading }}</span>
-                {% endif %}
-                <div class="buy-box-tiers__color-list" data-option-list></div>
-              </div>
-            </div>
-          {% endif %}
+         {% if has_options %}
+        <div class="buy-box-tiers__tier-colors-wrap" data-tier-colors-wrap>
+          <div class="buy-box-tiers__tier-colors" data-tier-colors>
+            {% if options_heading != blank %}
+              <span class="buy-box-tiers__color-heading">{{ options_heading }}</span>
+            {% endif %}
+            <div class="buy-box-tiers__color-list" data-option-list></div>
+          </div>
+        </div>
+      {% endif %}
         </label>
       {% endif %}
     {% endfor %}
@@ -467,7 +477,6 @@
     { "type": "checkbox", "id": "show_save_text", "label": "Show savings text", "default": true },
     { "type": "checkbox", "id": "show_swatch", "label": "Show variant image next to selectors", "default": true },
     { "type": "header", "content": "Text" },
-    { "type": "text", "id": "options_heading", "label": "Variant selector heading", "default": "Choose your options" },
     { "type": "text", "id": "per_unit_text", "label": "Per-unit text", "default": "/unit" },
     { "type": "text", "id": "total_text", "label": "Bundle total text", "default": "total" },
     { "type": "text", "id": "save_text", "label": "Savings text", "default": "You save" },
