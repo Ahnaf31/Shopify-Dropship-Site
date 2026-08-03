@@ -373,7 +373,7 @@
                 "icon": "caret",
                 "dividers": false,
                 "divider_color": "",
-                "type_preset": "h6",
+                "type_preset": "paragraph",
                 "background_color": "",
                 "text_color": "",
                 "border": "none",
@@ -1193,7 +1193,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<h4><strong>1. Clip it On</strong></h4>",
+                    "text": "<h4>2. Tuck & Turn on</h4>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -1219,8 +1219,8 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Attach CoolClip to the side of your pants, shorts, or belt.</p>",
-                    "width": "fit-content",
+                    "text": "<p>Clip your shirt into the outer clip and press the button to start airflow.</p>",
+                    "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
                     "type_preset": "rte",
@@ -1305,7 +1305,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<h4><strong>1. Clip it On</strong></h4>",
+                    "text": "<h4>3. Stay cool all day</h4>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -1331,7 +1331,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Attach CoolClip to the side of your pants, shorts, or belt.</p>",
+                    "text": "<p>A refreshing breeze circulates inside your shirt, keeping you cool for up to 12 hours.</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
