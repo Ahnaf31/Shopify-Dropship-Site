@@ -420,22 +420,9 @@ class BuyBoxTiers extends HTMLElement {
   }
 
   openCartDrawer() {
-    const drawer = /** @type {(HTMLElement & { open?: () => void }) | null} */ (
-      document.querySelector("cart-drawer-component")
-    );
-    if (!drawer) return;
-
-    if (typeof drawer.open === "function") {
-      drawer.open();
-      return;
-    }
-
-    // Horizon opens the drawer through its dialog component.
-    const dialog = /** @type {HTMLDialogElement | null} */ (
-      drawer.querySelector("dialog")
-    );
-    if (dialog && typeof dialog.showModal === "function" && !dialog.open) {
-      dialog.showModal();
+    const themeDrawer = document.querySelector("theme-drawer#cart-drawer");
+    if (themeDrawer && typeof themeDrawer.open === "function") {
+      themeDrawer.open();
     }
   }
 
@@ -456,9 +443,6 @@ class BuyBoxTiers extends HTMLElement {
     const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
     const deferred = CartLinesUpdateEvent.createPromise();
 
-    document
-      .querySelector("cart-drawer-component")
-      ?.setAttribute("auto-open", "");
     // Dispatch BEFORE the fetch — cart-icon.js awaits event.promise, it
     // doesn't read detail values off this event directly.
     this.dispatchEvent(
