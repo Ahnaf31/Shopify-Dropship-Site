@@ -355,7 +355,7 @@
         "section_width": "page-width",
         "gap": 24,
         "background_color": "#0A2540",
-        "divider_thickness": 1,
+        "divider_thickness": 0,
         "divider_color": "{{ settings.color_palette.color2 }}",
         "padding-block-start": 20,
         "padding-block-end": 48
