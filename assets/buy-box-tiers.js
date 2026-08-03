@@ -456,6 +456,9 @@ class BuyBoxTiers extends HTMLElement {
     const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
     const deferred = CartLinesUpdateEvent.createPromise();
 
+    document
+      .querySelector("cart-drawer-component")
+      ?.setAttribute("auto-open", "");
     // Dispatch BEFORE the fetch — cart-icon.js awaits event.promise, it
     // doesn't read detail values off this event directly.
     this.dispatchEvent(
