@@ -234,7 +234,6 @@
                 "show_tier_total": false,
                 "show_save_text": true,
                 "show_swatch": true,
-                "options_heading": "Choose your options",
                 "per_unit_text": "/unit",
                 "total_text": "total",
                 "save_text": "You save",
@@ -848,7 +847,7 @@
       "custom_css": [],
       "name": "Video carousel",
       "settings": {
-        "heading": "Cold you can feel",
+        "heading": "See CoolClip in Action",
         "heading_alignment": "center",
         "items_desktop": 4,
         "items_mobile": "1",
@@ -856,6 +855,79 @@
         "radius": 12,
         "background_color": "{{ settings.color_palette.background }}",
         "text_color": "{{ settings.color_palette.foreground }}"
+      }
+    },
+    "custom_testimonial_Q63pWf": {
+      "type": "custom-testimonial",
+      "blocks": {
+        "testimonial_c8DVxf": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "show_verified_badge": true,
+            "title": "Hubby Loves it!",
+            "body": "My husband absolutely loved it. Perfect practical gift — he uses it every weekend now doing yard work.",
+            "author": "Jessica",
+            "buyer_label": "Verified Buyer"
+          }
+        },
+        "testimonial_7ijd9y": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "show_verified_badge": true,
+            "title": "Its working good!! 💪",
+            "body": "Purchased as a gift for my wife. She's been using it at outdoor events and says it's a game changer.",
+            "author": "Allen",
+            "buyer_label": "Verified Buyer"
+          }
+        },
+        "testimonial_VdNXJh": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "show_verified_badge": true,
+            "title": "Nice fan",
+            "body": "I bought this portable fan to cope with the indoor heat at work; can confirm it does the trick. Lightweight and quiet.",
+            "author": "Angela",
+            "buyer_label": "Verified Buyer"
+          }
+        },
+        "testimonial_pQ6Jt3": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "show_verified_badge": true,
+            "title": "Cool off",
+            "body": "Lightweight, going to test it out in the sun. The build quality feels solid for the price.",
+            "author": "Vlad",
+            "buyer_label": "Verified Buyer"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_c8DVxf",
+        "testimonial_7ijd9y",
+        "testimonial_VdNXJh",
+        "testimonial_pQ6Jt3"
+      ],
+      "name": "Testimonials slider",
+      "settings": {
+        "eyebrow_text": "REAL CUSTOMERS, REAL RESULTS",
+        "rating": 4.8,
+        "customer_count": "20,000+",
+        "brand_name": "CoolClip",
+        "subheading_template": "Why [count] people chose [brand]",
+        "enable_nav_arrows": false,
+        "hide_scrollbar": false,
+        "background_color": "#EAF4F7",
+        "card_background": "#F7F8FA",
+        "accent_color": "#14384D",
+        "star_color": "#E8A33D",
+        "text_color": "#1A1A1A",
+        "muted_text_color": "#6B7280",
+        "padding_top": 60,
+        "padding_bottom": 60
       }
     },
     "carousel_6PJcUx": {
@@ -1309,102 +1381,296 @@
         "padding-block-end": 40
       }
     },
-    "17852697708a0fd6bb": {
-      "type": "_blocks",
+    "cusotm_feature_comparison_table_z3UP8h": {
+      "type": "cusotm-feature-comparison-table",
       "blocks": {
-        "ai_gen_block_773cbbe_DL4Xdk": {
-          "type": "ai_gen_block_773cbbe",
+        "column_zPgXf6": {
+          "type": "column",
           "settings": {
-            "heading": "What our customers say",
-            "subheading": "Don't just take our word for it",
-            "text_alignment": "center",
-            "section_padding": 50,
-            "desktop_width_percent": 100,
-            "background_color": "#ffffff",
-            "columns_desktop": 3,
-            "columns_mobile": "1",
-            "grid_gap": 20,
-            "card_background": "#f9f9f9",
-            "card_padding": 30,
-            "card_border_radius": 14,
-            "card_border_width": 0,
-            "card_border_color": "#e0e0e0",
-            "heading_size": 32,
-            "heading_color": "#000000",
-            "subheading_size": 16,
-            "subheading_color": "#666666",
-            "quote_size": 16,
-            "quote_color": "#333333",
-            "author_name_size": 14,
-            "author_title_size": 12,
-            "show_stars": true,
-            "star_size": 18,
-            "star_color": "#ffb800",
-            "avatar_size": 50,
-            "arrow_background": "#000000",
-            "arrow_color": "#ffffff",
-            "dot_color": "#000000",
-            "testimonial_1_rating": 5,
-            "testimonial_1_quote": "This product exceeded my expectations! The quality is outstanding and it arrived faster than I thought.",
-            "testimonial_1_name": "Sarah Johnson",
-            "testimonial_1_title": "Verified Buyer",
-            "testimonial_2_rating": 5,
-            "testimonial_2_quote": "Absolutely love it! Great customer service and the product is exactly as described. Highly recommend!",
-            "testimonial_2_name": "Michael Chen",
-            "testimonial_2_title": "Verified Buyer",
-            "testimonial_3_rating": 5,
-            "testimonial_3_quote": "Best purchase I've made this year. The attention to detail is incredible and it's worth every penny.",
-            "testimonial_3_name": "Emily Rodriguez",
-            "testimonial_3_title": "Verified Buyer",
-            "testimonial_4_rating": 5,
-            "testimonial_4_quote": "",
-            "testimonial_4_name": "",
-            "testimonial_4_title": "",
-            "testimonial_5_rating": 5,
-            "testimonial_5_quote": "",
-            "testimonial_5_name": "",
-            "testimonial_5_title": "",
-            "testimonial_6_rating": 5,
-            "testimonial_6_quote": "",
-            "testimonial_6_name": "",
-            "testimonial_6_title": "",
-            "testimonial_7_rating": 5,
-            "testimonial_7_quote": "",
-            "testimonial_7_name": "",
-            "testimonial_7_title": "",
-            "testimonial_8_rating": 5,
-            "testimonial_8_quote": "",
-            "testimonial_8_name": "",
-            "testimonial_8_title": "",
-            "testimonial_9_rating": 5,
-            "testimonial_9_quote": "",
-            "testimonial_9_name": "",
-            "testimonial_9_title": "",
-            "testimonial_10_rating": 5,
-            "testimonial_10_quote": "",
-            "testimonial_10_name": "",
-            "testimonial_10_title": ""
-          },
-          "blocks": {}
+            "label": "COOLCLIP®",
+            "highlighted": true
+          }
+        },
+        "column_VpBWam": {
+          "type": "column",
+          "settings": {
+            "label": "NECK FANS",
+            "highlighted": false
+          }
+        },
+        "column_7aJqKR": {
+          "type": "column",
+          "settings": {
+            "label": "HANDHELD FANS",
+            "highlighted": false
+          }
+        },
+        "row_7XpMzf": {
+          "type": "row",
+          "settings": {
+            "feature_name": "Hands-free",
+            "icon_1": "check",
+            "text_1": "",
+            "icon_2": "check",
+            "text_2": "",
+            "icon_3": "cross",
+            "text_3": "",
+            "icon_4": "none",
+            "text_4": ""
+          }
+        },
+        "row_H9UNfA": {
+          "type": "row",
+          "settings": {
+            "feature_name": "Under-shirt evaporative cooling",
+            "icon_1": "check",
+            "text_1": "",
+            "icon_2": "cross",
+            "text_2": "",
+            "icon_3": "cross",
+            "text_3": "",
+            "icon_4": "none",
+            "text_4": ""
+          }
+        },
+        "row_QnanQB": {
+          "type": "row",
+          "settings": {
+            "feature_name": "12+ hour battery",
+            "icon_1": "check",
+            "text_1": "",
+            "icon_2": "cross",
+            "text_2": "(3-6hr)",
+            "icon_3": "cross",
+            "text_3": "(2-4hr)",
+            "icon_4": "none",
+            "text_4": ""
+          }
+        },
+        "row_J6FkFB": {
+          "type": "row",
+          "settings": {
+            "feature_name": "Ultra Light Weight",
+            "icon_1": "none",
+            "text_1": "7 oz",
+            "icon_2": "none",
+            "text_2": "8-12 oz",
+            "icon_3": "none",
+            "text_3": "4-6 oz",
+            "icon_4": "none",
+            "text_4": ""
+          }
+        },
+        "row_xgWnj3": {
+          "type": "row",
+          "settings": {
+            "feature_name": "Reduce Sweating",
+            "icon_1": "none",
+            "text_1": "Whole body",
+            "icon_2": "none",
+            "text_2": "only neck",
+            "icon_3": "none",
+            "text_3": "limited",
+            "icon_4": "none",
+            "text_4": ""
+          }
         }
       },
       "block_order": [
-        "ai_gen_block_773cbbe_DL4Xdk"
+        "column_zPgXf6",
+        "column_VpBWam",
+        "column_7aJqKR",
+        "row_7XpMzf",
+        "row_H9UNfA",
+        "row_QnanQB",
+        "row_J6FkFB",
+        "row_xgWnj3"
       ],
+      "name": "Feature comparison table",
       "settings": {
-        "content_direction": "column",
+        "eyebrow_text": "WHY COOLCLIP?",
+        "heading": "Not all fans are created equal",
+        "subheading": "See how CoolClip stacks up against the alternatives.",
+        "feature_column_label": "FEATURE",
+        "table_max_width": 880,
+        "background_color": "#EAF4F7",
+        "eyebrow_color": "#1C6EA4",
+        "heading_color": "#1A1A1A",
+        "subheading_color": "#1C6EA4",
+        "border_color": "#E1E1E1",
+        "header_underline_color": "#1A1A1A",
+        "feature_text_color": "#1A1A1A",
+        "value_text_color": "#4B4B4B",
+        "column_label_color": "#6B7280",
+        "check_color": "#1E824C",
+        "cross_color": "#E4572E",
+        "highlighted_bg_color": "#DCE9F2",
+        "highlighted_header_bg_color": "#1B5E7A",
+        "highlighted_header_text_color": "#FFFFFF"
+      }
+    },
+    "section_wDcDY7": {
+      "type": "section",
+      "blocks": {
+        "image_nwBwaC": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CoolClip7.webp",
+            "link": "",
+            "image_ratio": "landscape",
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "group_P4R7UB": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "custom",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "#0a2540",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "text_F3VNYY": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h2>Stay Cool Guarantee</h2>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h3",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_QyWryz": {
+              "type": "text",
+              "settings": {
+                "text": "<p><br/>Our team love the CoolClip® and are confident you will too! That's why we're offering a 30-Day, Risk-Free Guarantee. If you're not satisfied, we'll gladly issue a full refund in accordance with our Return & Refund Policy<br/><br/></p>",
+                "width": "fit-content",
+                "max_width": "narrow",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "button_E4XXMQ": {
+              "type": "button",
+              "disabled": true,
+              "settings": {
+                "label": "Shop now",
+                "link": "shopify://collections/all",
+                "open_in_new_tab": false,
+                "style_class": "button",
+                "custom_button_background": "{{ settings.color_palette.foreground }}",
+                "custom_button_text": "{{ settings.color_palette.background }}",
+                "custom_button_border": "{{ settings.color_palette.background }}",
+                "link_text_color": "",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_F3VNYY",
+            "text_QyWryz",
+            "button_E4XXMQ"
+          ]
+        }
+      },
+      "block_order": [
+        "image_nwBwaC",
+        "group_P4R7UB"
+      ],
+      "name": "t:names.image_with_text",
+      "settings": {
+        "content_direction": "row",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
         "vertical_alignment": "center",
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 12,
+        "gap": 30,
         "section_width": "page-width",
         "section_height": "",
         "section_height_custom": 50,
         "background_media": "none",
-        "background_color": "",
+        "background_color": "#0a2540",
         "video_position": "cover",
         "background_image_position": "cover",
         "toggle_overlay": false,
@@ -1694,12 +1960,12 @@
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 32,
+        "gap": 20,
         "section_width": "page-width",
         "section_height": "",
         "section_height_custom": 50,
         "background_media": "none",
-        "background_color": "",
+        "background_color": "{{ settings.color_palette.background }}",
         "video_position": "cover",
         "background_image_position": "cover",
         "toggle_overlay": false,
@@ -1714,183 +1980,6 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
-    },
-    "section_wDcDY7": {
-      "type": "section",
-      "blocks": {
-        "image_nwBwaC": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/CoolClip7.webp",
-            "link": "",
-            "image_ratio": "landscape",
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_color": "",
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "group_P4R7UB": {
-          "type": "group",
-          "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
-            "width": "custom",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "background_media": "none",
-            "background_color": "#0a2540",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_color": "",
-            "border_radius": 0,
-            "link": "",
-            "open_in_new_tab": false,
-            "placeholder": "",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "text_F3VNYY": {
-              "type": "text",
-              "name": "t:names.heading",
-              "settings": {
-                "text": "<h2>Stay Cool Guarantee</h2>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h3",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "text_QyWryz": {
-              "type": "text",
-              "settings": {
-                "text": "<p><br/>Our team love the CoolClip® and are confident you will too! That's why we're offering a 30-Day, Risk-Free Guarantee. If you're not satisfied, we'll gladly issue a full refund in accordance with our Return & Refund Policy<br/><br/></p>",
-                "width": "fit-content",
-                "max_width": "narrow",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "button_E4XXMQ": {
-              "type": "button",
-              "disabled": true,
-              "settings": {
-                "label": "Shop now",
-                "link": "shopify://collections/all",
-                "open_in_new_tab": false,
-                "style_class": "button",
-                "custom_button_background": "{{ settings.color_palette.foreground }}",
-                "custom_button_text": "{{ settings.color_palette.background }}",
-                "custom_button_border": "{{ settings.color_palette.background }}",
-                "link_text_color": "",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "text_F3VNYY",
-            "text_QyWryz",
-            "button_E4XXMQ"
-          ]
-        }
-      },
-      "block_order": [
-        "image_nwBwaC",
-        "group_P4R7UB"
-      ],
-      "name": "t:names.image_with_text",
-      "settings": {
-        "content_direction": "row",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 30,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "background_media": "none",
-        "background_color": "#0a2540",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_color": "",
-        "border_radius": 0,
-        "padding-block-start": 0,
-        "padding-block-end": 0
-      }
     }
   },
   "order": [
@@ -1898,8 +1987,9 @@
     "product_recommendations_qggXJq",
     "marquee_6NiqhW",
     "video_carousel_NiQHBK",
+    "custom_testimonial_Q63pWf",
     "carousel_6PJcUx",
-    "17852697708a0fd6bb",
+    "cusotm_feature_comparison_table_z3UP8h",
     "section_wDcDY7",
     "section_hakqqT"
   ]
