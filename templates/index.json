@@ -207,6 +207,48 @@
         "padding-block-end": 48
       }
     },
+    "marquee_MagHq8": {
+      "type": "marquee",
+      "blocks": {
+        "text_G4FBUX": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Stay Cool and Comfortable, Whenever, Wherever!</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "tight",
+            "letter_spacing": "tight",
+            "case": "none",
+            "wrap": "nowrap",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_G4FBUX"
+      ],
+      "name": "t:names.marquee_section",
+      "settings": {
+        "movement_direction": "normal",
+        "speed_factor": 25,
+        "background_color": "#0A2540",
+        "padding-block-start": 24,
+        "padding-block-end": 24,
+        "gap_between_elements": 24
+      }
+    },
     "product_list_fa6P9H": {
       "type": "product-list",
       "blocks": {
@@ -410,6 +452,7 @@
   "order": [
     "hero_jVaWmY",
     "section_Yzw7ra",
+    "marquee_MagHq8",
     "product_list_fa6P9H"
   ]
 }
