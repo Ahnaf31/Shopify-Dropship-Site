@@ -111,7 +111,10 @@
               {% endif %}
             >
             <span class="buy-box-tiers__tier-info">
-              <span class="buy-box-tiers__tier-label">{{ label | default: qty | append: 'x' }}</span>
+              {% comment %} <span class="buy-box-tiers__tier-label">{{ label | default: qty | append: 'x' }}</span> {% endcomment %}
+               <span class="buy-box-tiers__tier-label">
+                {% if label != blank %}{{ label }}{% else %}{{ qty }}x{% endif %}
+              </span>
               {% if badge != blank %}
                 <span class="buy-box-tiers__badge">{{ badge }}</span>
               {% endif %}
