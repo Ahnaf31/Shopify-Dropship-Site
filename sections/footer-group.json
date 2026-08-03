@@ -104,7 +104,7 @@
               "settings": {
                 "text": "<p>Get exclusive deals and early access to new products.</p>",
                 "width": "100%",
-                "max_width": "narrow",
+                "max_width": "normal",
                 "alignment": "left",
                 "type_preset": "rte",
                 "font": "var(--font-body--family)",
@@ -128,7 +128,7 @@
               "type": "email-signup",
               "settings": {
                 "width": "custom",
-                "custom_width": 35,
+                "custom_width": 20,
                 "heading": "",
                 "heading_text_color": "",
                 "heading_preset": "h3",
