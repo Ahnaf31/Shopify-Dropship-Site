@@ -1,0 +1,66 @@
+{%- assign pkey=product.id|prepend: "p" -%}
+{%- assign reviews = product.metafields.viva_r[pkey].value  -%}
+{% assign vivaLanguageSettings = shop.metafields.viva_r.language_settings.value %}
+{% assign vivaLayouts = shop.metafields.viva_r.layout_settings.value %}
+{%liquid 
+  if vivaLayouts.starcolor
+    assign starcolor = vivaLayouts.starcolor
+  else 
+    assign starcolor = "#ffc007"
+  endif
+%}
+{% assign total = 0 %}
+{% assign count = 0 %}
+{%- for review in reviews -%}
+  {% assign total = total | plus: review.rating %}
+  {% assign count = count | plus: 1 %}
+{%- endfor -%}
+{% assign average = total| times: 1.0 | divided_by: reviews.size | round: 2 %}
+<script> 
+  if(typeof sarmCollectionReviewsObj == "undefined"){
+    var sarmCollectionReviewsObj = {
+      "{{product.title}}":{
+      "avg":"{{average}}",
+      "total_rating": "{{total}}",
+      "total_reviews":"{{count}}"
+        }
+    }
+  }else{
+    sarmCollectionReviewsObj["{{product.title}}"] = {
+      "avg":"{{average}}",
+      "total_rating": "{{total}}",
+      "total_reviews":"{{count}}"
+       }
+  }
+</script>
+<script>
+  var sarmReviewLanguageSettings = {{ vivaLanguageSettings| json}};
+  if(!sarmReviewLanguageSettings){
+      sarmReviewLanguageSettings = {
+          cancel_review_btn_text: "Cancel",
+          submit_review_btn_text: "Submit Review",
+          add_images_btn_text: "Add Images",
+          write_review_btn_text: "Write A Review",
+          give_review_btn_text: "Write A Review",
+          your_feedback_label_text: "Your Feedback",
+          your_email_label_text: "Your Email",
+          your_name_label_text: "Your Name",
+          your_rating_label_text: "Your Rating ",
+          hover_see_only_first_label_text:  "See only",
+          hover_see_only_second_label_text:  "star reviews",
+          total_review_text: " reviews",
+          customer_review_text: "Customer Reviews",
+          thankyou_note: "Thank you for this valuable feedback",
+          no_review_to_give_a_review_text:  "review this product",
+          no_review_text:  "No reviews yet. Be the first to",
+          show_more_review_btn_text: "Show More Reviews",
+      };
+  }
+</script>
+<style>.sarm-master-container{display:block}.sarm-avgratingtext-count{text-align:center;margin:auto}.sarm-avgratingtext{display:none!important}.sarm-avg-rating{white-space:nowrap}.sarm-undertitle-review-container{font-size:15px!important}@media only screen and (max-width:600px){.sarm-undertitle-review-container{display:block}.sarm-avg-rating{width:100%;text-align:left;margin:auto}.sarm-avgratingtext{margin:auto 0;text-align:center;display:none}.sarm-avgtotalcount{text-align:center;margin:auto}.sarm-avgratingtext-count{text-align:center}}@media only screen and (min-width:600px) and (max-width:767px){.sarm-undertitle-review-container{display:block}.sarm-avg-rating{width:100%;text-align:center;margin:auto}.sarm-avgratingtext{margin:auto 0;text-align:center}.sarm-avgtotalcount{text-align:center;margin:auto}}@media only screen and (min-width:768px) and (max-width:991px){.sarm-undertitle-review-container{display:inline-flex;padding-left:10px;width:100%;text-align:center}.sarm-avg-rating{width:80px;margin:2px 0}.sarm-avgratingtext,.sarm-avgtotalcount{margin:auto 0}}@media only screen and (min-width:992px){.sarm-undertitle-review-container{display:inline-flex}.sarm-avg-rating{width:80px;margin:2px 0}.sarm-avgratingtext,.sarm-avgtotalcount{margin:auto 0}}</style>
+<script>
+document.onreadystatechange=function(){if("complete"===document.readyState){var t;function e(t,e=5){for(let l=0;l<e;l++){if(0==getComputedStyle(t).opacity)return!0;t=t.parentNode}return!1}function l(t,e=1){console.log("checking overflow");for(let l=0;l<e&&"hidden"==getComputedStyle(t.parentNode).overflow;l++)t=t.parentNode;return t}function r(t){return t=(t=(t=(t=(t=t.replace(/(\r\n|\n|\r)/gm,"")).replaceAll('"',"'")).replaceAll("&amp;","&")).replaceAll(/\s/g,"")).replaceAll(/\s/g,"")}function n(t,e){let l=0,n;for(let a of t){let i=a.innerText;if(null!=i&&(i=r(i))&&i.toLocaleLowerCase().trim()==e.toLocaleLowerCase().trim()){let o=window.getComputedStyle(a,null).getPropertyValue("font-size").match(/\d/g);(l<=(o="number"==typeof(o=o.join(""))?o:parseInt(o))||o>10)&&a.getBoundingClientRect().width>0&&(n=a,l=o)}}return{titleEl:n}}function a(t,e){try{e.parentNode.insertBefore(t,e.nextSibling)}catch(l){console.log("bsrInsertAfter",l)}}function i(t="20",e="20",l="{{ vivaLayouts.starcolor }}",r=100){let n=document.createElementNS("http://www.w3.org/2000/svg","svg");if(n.setAttributeNS("http://www.w3.org/2000/xmlns/","xmlns:xlink","http://www.w3.org/1999/xlink"),n.setAttribute("viewBox","0 -10 511.98685 511"),n.setAttribute("height",t),n.setAttribute("width",e),n.setAttribute("style",`height:${t}px; width:${e}px`),n.setAttribute("preserveAspectRatio","none"),n.setAttribute("xml:space","preserve"),n.setAttribute("x","0px"),n.setAttribute("y","0px"),r<100){let a=document.createElementNS("http://www.w3.org/2000/svg","defs"),i=document.createElementNS("http://www.w3.org/2000/svg","linearGradient");i.setAttribute("id","half_grad");let o=[{color:"{{ vivaLayouts.starcolor }}",offset:r+"%"},{color:l,offset:(100-r).toFixed(1)+"%"}];for(let _=0,s=o.length;_<s;_++){let $=document.createElementNS("http://www.w3.org/2000/svg","stop");$.setAttribute("offset",o[_].offset),$.setAttribute("stop-color",o[_].color),i.appendChild($)}a.appendChild(i),n.append(a)}let c=document.createElementNS("http://www.w3.org/2000/svg","path");return c.setAttributeNS(null,"d","m510.652344 185.902344c-3.351563-10.367188-12.546875-17.730469-23.425782-18.710938l-147.773437-13.417968-58.433594-136.769532c-4.308593-10.023437-14.121093-16.511718-25.023437-16.511718s-20.714844 6.488281-25.023438 16.535156l-58.433594 136.746094-147.796874 13.417968c-10.859376 1.003906-20.03125 8.34375-23.402344 18.710938-3.371094 10.367187-.257813 21.738281 7.957031 28.90625l111.699219 97.960937-32.9375 145.089844c-2.410156 10.667969 1.730468 21.695313 10.582031 28.09375 4.757813 3.4375 10.324219 5.1875 15.9375 5.1875 4.839844 0 9.640625-1.304687 13.949219-3.882813l127.46875-76.183593 127.421875 76.183593c9.324219 5.609376 21.078125 5.097657 29.910156-1.304687 8.855469-6.417969 12.992187-17.449219 10.582031-28.09375l-32.9375-145.089844 111.699219-97.941406c8.214844-7.1875 11.351563-18.539063 7.980469-28.925781zm0 0"),r<100?c.setAttribute("fill","url(#half_grad)"):c.setAttribute("fill",l),n.append(c),n}t=async function(){(function t(e,l,r=null,n,a){let i=new XMLHttpRequest;if(!i)return alert("Please Try Again"),!1;i.onreadystatechange=function(){4===this.readyState&&200===this.status?a(this.responseText):4==this.readyState&&this.status>400&&a("api error")},i.open("GET",e,!0),i.setRequestHeader("Content-type",n),null!=r?i.send(r):i.send()})("https://viva-fetch-review-bucket.s3.amazonaws.com/plans/"+Shopify.shop+".json","GET",data=null,header=["application/x-www-form-urlencoded"],t=>{window.sarMPlan=JSON.parse(t),window.sarMPlan.google_rich_snippet>=0&&function t(){try{let o=document.body.querySelectorAll("*"),_=Object.keys(sarmCollectionReviewsObj),s=function t(e,l){let n=[],a=0;e.map(t=>{t=r(t),n.push(t.toLocaleLowerCase().trim())});let i={},o={};for(let _ of l){let s=_.innerText;if(null!=s){s=r(s);let $=n.find(t=>t==s.toLocaleLowerCase().trim());if(s&&$){let c=window.getComputedStyle(_,null).getPropertyValue("font-size").match(/\d/g);(a<=(c="number"==typeof(c=c.join(""))?c:parseInt(c))||c>10)&&_.getBoundingClientRect().width>0&&(titleEl=_,i[$]=titleEl,a=c,o[$]=window.getComputedStyle(_,null))}}}return i}(_,o),$=document.body.querySelectorAll("a");for(let c=0;c<_.length;c++){if(sarmCollectionReviewsObj[_[c]]?.total_rating=="0")continue;let p=r(_[c]);p=p.toLocaleLowerCase().trim();let d=sarmCollectionReviewsObj[_[c]].avg,u=sarmCollectionReviewsObj[_[c]].total_reviews,f,g;if(f=s[p],e(f,5)){o=$;let w=n(o,p).titleEl;w&&(f=w)}f=l(f),g=window.getComputedStyle(f,null);let m=document.createElement("div"),h=document.createElement("div");m.classList.add("sarm-undertitle-review-container");let v=Math.floor(d);for(let y=1;y<=5;y++)if(y<=v)h.append(i(16,16));else if(y==v+1){let A=(d-Math.floor(d)).toFixed(2);A*=100,0==A&&(A=100),h.append(i(16,16,"#EDEDED",A))}else y>v+1&&h.append(i(16,16,"#EDEDED"));h.classList.add("sarm-avg-rating"),h.style.width="82px",m.append(h);let x=document.createElement("div");x.classList.add("sarm-avgratingtext-count");let b=document.createElement("span");b.innerHTML=d,b.classList.add("sarm-avgratingtext"),x.append(b);let L=document.createElement("span");L.innerHTML="("+u+" "+sarmReviewLanguageSettings?.total_review_text+")",L.classList.add("sarm-avgtotalcount"),x.append(L),m.append(x),g&&(m.setAttribute("style",`margin-left:${g?.marginLeft};
+                        margin-right:${g?.marginRight}; padding-left:${g?.paddingLeft};
+                        font-size:${g?.fontSize??"15px"}
+                        `),h.setAttribute("style",`text-align:${g?.textAlign}`),x.setAttribute("style",`text-align:${g?.textAlign}`));let E=document.createElement("div");E.append(m),E.classList.add("sarm-master-container"),m&&f&&a(E,f)}}catch(S){}}()})},"complete"===document.readyState||"interactive"===document.readyState?setTimeout(t,1):document.addEventListener("DOMContentLoaded",t)}};
+</script>

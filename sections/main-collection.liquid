@@ -58,7 +58,7 @@
         {% assign products_per_page = section.settings.products_per_page %}
       {% endif %}
 
-      {% paginate collection.products by products_per_page %}
+      {% paginate collection.products by products_per_page %} {% for product in collection.products %} {% render 'sarm-collection-review', product:product %} {% endfor %} 
         {% capture children %}
           {% for product in collection.products %}
             <li
