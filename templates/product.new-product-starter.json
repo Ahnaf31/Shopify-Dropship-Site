@@ -242,16 +242,16 @@
                 "sold_out_text": "Sold out",
                 "unavailable_text": "This combination is unavailable",
                 "tier_1_enabled": true,
-                "tier_1_label": "1x CoolClip",
+                "tier_1_label": "1x",
                 "tier_1_badge": "",
                 "tier_1_quantity": 1,
                 "tier_2_enabled": true,
-                "tier_2_label": "2x CoolClip",
+                "tier_2_label": "2x",
                 "tier_2_badge": "",
                 "tier_2_quantity": 2,
                 "tier_3_enabled": true,
-                "tier_3_label": "3x CoolClip",
-                "tier_3_badge": "Best Value!",
+                "tier_3_label": "3x",
+                "tier_3_badge": "",
                 "tier_3_quantity": 3,
                 "tier_4_enabled": false,
                 "tier_4_label": "4x",
@@ -327,45 +327,6 @@
               },
               "block_order": []
             },
-            "text_HJWjUK": {
-              "type": "text",
-              "name": "t:names.text",
-              "settings": {
-                "text": "<p><em><strong>Note:</strong></em><em>Our current batch of CoolClip® is fully claimed. Order now to lock in your spot in the next shipment, on its way and expected in about two weeks, so yours ships the moment it lands. No need to check back, you're already in line.</em></p>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "trust_badges_6fz7GT": {
-              "type": "trust-badges",
-              "name": "Trust badges",
-              "settings": {
-                "icon_1": "<svg class=\"icon-block__media icon-block-ASDNrT3FrOVB4VXlMY__icon_DwXxJC icon-default\" aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewbox=\"0 0 20 20\">\n\n\n<path d=\"M0 3.75156C0 3.47454 0.224196 3.24997 0.500755 3.24997H10.647C10.9235 3.24997 11.1477 3.47454 11.1477 3.75156V5.07505V5.63362V6.10938V13.6616C10.9427 14.0067 10.8813 14.1101 10.5516 14.6648L7.22339 14.6646V13.6614H10.1462V4.25316H1.00151V13.6614H2.6842V14.6646H0.500755C0.224196 14.6646 0 14.44 0 14.163V3.75156Z\"></path>\n    <path d=\"M18.9985 8.08376L11.1477 6.10938V5.07505L19.6212 7.20603C19.8439 7.26203 20 7.46255 20 7.69253V14.1631C20 14.4401 19.7758 14.6647 19.4992 14.6647H17.3071V13.6615H18.9985V8.08376ZM11.1477 13.6616L13.3442 13.6615L13.3443 14.6647L10.5516 14.6648L11.1477 13.6616Z\"></path>\n    <path d=\"M7.71269 14.1854C7.71269 15.6018 6.56643 16.75 5.15245 16.75C3.73847 16.75 2.59221 15.6018 2.59221 14.1854C2.59221 12.7691 3.73847 11.6209 5.15245 11.6209C6.56643 11.6209 7.71269 12.7691 7.71269 14.1854ZM5.15245 15.7468C6.01331 15.7468 6.71118 15.0478 6.71118 14.1854C6.71118 13.3231 6.01331 12.6241 5.15245 12.6241C4.29159 12.6241 3.59372 13.3231 3.59372 14.1854C3.59372 15.0478 4.29159 15.7468 5.15245 15.7468Z\"></path>\n    <path d=\"M17.5196 14.1854C17.5196 15.6018 16.3733 16.75 14.9593 16.75C13.5454 16.75 12.3991 15.6018 12.3991 14.1854C12.3991 12.7691 13.5454 11.6209 14.9593 11.6209C16.3733 11.6209 17.5196 12.7691 17.5196 14.1854ZM14.9593 15.7468C15.8202 15.7468 16.5181 15.0478 16.5181 14.1854C16.5181 13.3231 15.8202 12.6241 14.9593 12.6241C14.0985 12.6241 13.4006 13.3231 13.4006 14.1854C13.4006 15.0478 14.0985 15.7468 14.9593 15.7468Z\"></path></svg>",
-                "label_1": "Free Shipping Worldwide",
-                "icon_2": "<svg class=\"icon-block__media icon-block-AZU5aU2NOZUUvZnlwU__icon_TtybPF icon-default\" aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewbox=\"0 0 20 20\">\n\n\n<path d=\"M11.571 1.05882C11.571 0.750194 11.8198 0.5 12.1266 0.5H13.4572C17.0692 0.5 20 3.45304 20 7.08924C20 10.7255 17.0692 13.6785 13.4572 13.6785L1.89992 13.7105L1.30855 13.1197L1.89992 12.5484L13.4572 12.5608C16.4541 12.5608 18.8889 10.1096 18.8889 7.08924C18.8889 4.06891 16.4541 1.61765 13.4572 1.61765H12.1266C11.8198 1.61765 11.571 1.36745 11.571 1.05882Z\"></path>\n    <path d=\"M6.00311 7.00677C6.22317 6.7917 6.57489 6.79679 6.78871 7.01815C7.00252 7.2395 6.99746 7.59329 6.7774 7.80836L6.00311 7.00677ZM1.30855 13.1197L6.73968 18.5463C6.9565 18.7647 6.95627 19.1185 6.73917 19.3366C6.52207 19.5547 6.17031 19.5544 5.9535 19.3361L0.162462 13.5034C0.0572388 13.3974 -0.00128425 13.2533 2.13868e-05 13.1036C0.00132703 12.9538 0.0623521 12.8108 0.169407 12.7067C0.3269 12.5535 1.78474 11.1291 3.20439 9.74186L6.00311 7.00677L6.7774 7.80836L3.97862 10.5435C2.95441 11.5444 1.8705 12.5709 1.30855 13.1197Z\"></path></svg>",
-                "label_2": "30-Day Money Back Guarantee",
-                "icon_3": "<svg class=\"icon-block__media icon-block-AbE5iUTdqSDhoQi92L__icon_M9jqQh icon-default\" aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewbox=\"0 0 20 20\">\n\n\n<path d=\"M10 5.2393L8.5149 3.77392C6.79996 2.08174 4.01945 2.08174 2.30451 3.77392C0.589562 5.4661 0.589563 8.2097 2.30451 9.90188L10 17.4952L17.6955 9.90188C19.4104 8.2097 19.4104 5.4661 17.6955 3.77392C15.9805 2.08174 13.2 2.08174 11.4851 3.77392L10 5.2393ZM10.765 3.06343C12.8777 0.978857 16.3029 0.978856 18.4155 3.06343C20.5282 5.148 20.5282 8.52779 18.4155 10.6124L10.72 18.2057C10.3224 18.5981 9.67763 18.5981 9.27996 18.2057L1.58446 10.6124C-0.528154 8.52779 -0.528154 5.14801 1.58446 3.06343C3.69708 0.978859 7.12233 0.978858 9.23495 3.06343L10 3.81832L10.765 3.06343Z\" fill-rule=\"evenodd\"></path></svg>",
-                "label_3": "1-Year Warranty"
-              },
-              "blocks": {}
-            },
             "accordion_XhGqCa": {
               "type": "accordion",
               "name": "t:names.accordion",
@@ -390,7 +351,7 @@
                 "accordion_row_i4bnyF": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "How it works",
+                    "heading": "How to use",
                     "open_by_default": true,
                     "icon": "question_mark",
                     "width": 20
@@ -399,7 +360,7 @@
                     "text_pnwFaB": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>Our goal is for every customer to be totally satisfied with their purchase. If this isn't the case, let us know and we'll do our best to work with you to make it right.</p>",
+                        "text": "<p>See the product description for instructions and product details.</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -438,7 +399,7 @@
                     "text_dP7Qg7": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>Weight: 7 ounces (200 g)<br/>Battery Capacity: Up to 12 hours (4500 mAh)<br/>Battery Type: Rechargeable via USB-C</p><p><strong>Box Content:</strong></p><ul><li>1 x CoolClip™</li><li>1 x Type-C charging cable</li><li>1 x User Manual</li></ul>",
+                        "text": "<p>See the product description and available options for specifications.</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -468,7 +429,7 @@
                 "accordion_row_hCFpc4": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "Shipping & Return",
+                    "heading": "Shipping and returns",
                     "open_by_default": false,
                     "icon": "truck",
                     "width": 20
@@ -477,7 +438,7 @@
                     "text_tj4C4W": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>We love our CoolClip™ and we're confident that you will too! In case things don't go as planned, we have a 30-day return and<a href=\"https://www.scopioe.com/\" title=\"Link add kore ne\">refund policy</a>to make things as easy as possible for you.</p>",
+                        "text": "<p>Shipping charges are shown at checkout. Please review our store policies for delivery and returns information.</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -517,8 +478,6 @@
             "divider_VJhene",
             "buy_box_tiers_1",
             "buy_buttons_DpFNer",
-            "text_HJWjUK",
-            "trust_badges_6fz7GT",
             "accordion_XhGqCa"
           ]
         }
@@ -687,7 +646,7 @@
         "text_U3fpwN": {
           "type": "text",
           "settings": {
-            "text": "<h6>• USB-C RECHARGEABLE</h6>",
+            "text": "<h6>• ADD PRODUCT BENEFIT 1</h6>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "left",
@@ -712,7 +671,7 @@
         "text_fQykxd": {
           "type": "text",
           "settings": {
-            "text": "<h6>• ONLY 7 OZ / 200 G</h6>",
+            "text": "<h6>• ADD PRODUCT BENEFIT 2</h6>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "left",
@@ -737,7 +696,7 @@
         "text_MdXHJi": {
           "type": "text",
           "settings": {
-            "text": "<h6>• 20,000+ UNITS SOLD</h6>",
+            "text": "<h6>• ADD PRODUCT BENEFIT 3</h6>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "left",
@@ -765,7 +724,7 @@
         "text_fQykxd",
         "text_MdXHJi"
       ],
-      "name": "t:names.marquee_section",
+      "name": "Benefits - add content",
       "settings": {
         "movement_direction": "normal",
         "speed_factor": 10,
@@ -773,7 +732,8 @@
         "padding-block-start": 5,
         "padding-block-end": 5,
         "gap_between_elements": 15
-      }
+      },
+      "disabled": true
     },
     "video_carousel_NiQHBK": {
       "type": "video-carousel",
@@ -782,9 +742,6 @@
           "type": "ugc-video",
           "settings": {
             "source_type": "upload",
-            "video": "shopify://files/videos/d1473657dd254af9989f403ecacbe2a1.HD-1080p-7.2Mbps-80167697.mp4",
-            "embed_url": "",
-            "poster": "shopify://shop_images/thumbnail2.png",
             "aspect_ratio": "9/16",
             "caption": ""
           },
@@ -794,8 +751,6 @@
           "type": "ugc-video",
           "settings": {
             "source_type": "embed",
-            "embed_url": "https://www.youtube.com/shorts/mAd3d1A-kYA",
-            "poster": "shopify://shop_images/Screenshot_2026-07-07_112738.png",
             "aspect_ratio": "9/16",
             "caption": ""
           },
@@ -805,9 +760,6 @@
           "type": "ugc-video",
           "settings": {
             "source_type": "upload",
-            "video": "shopify://files/videos/0f958b74eaa14841b4b9caad583de66f.HD-1080p-7.2Mbps-80167699.mp4",
-            "embed_url": "",
-            "poster": "shopify://shop_images/thumnail-3.png",
             "aspect_ratio": "9/16",
             "caption": ""
           },
@@ -817,8 +769,6 @@
           "type": "ugc-video",
           "settings": {
             "source_type": "embed",
-            "embed_url": "https://www.youtube.com/watch?v=q6VmBqzi26I",
-            "poster": "shopify://shop_images/CoolClip_Pro_7.webp",
             "aspect_ratio": "9/16",
             "caption": ""
           },
@@ -828,9 +778,6 @@
           "type": "ugc-video",
           "settings": {
             "source_type": "upload",
-            "video": "shopify://files/videos/d1473657dd254af9989f403ecacbe2a1.HD-1080p-7.2Mbps-80167697.mp4",
-            "embed_url": "",
-            "poster": "shopify://shop_images/thumbnail2.png",
             "aspect_ratio": "9/16",
             "caption": ""
           },
@@ -845,9 +792,9 @@
         "ugc_video_RLwRbw"
       ],
       "custom_css": [],
-      "name": "Video carousel",
+      "name": "Videos - add product videos",
       "settings": {
-        "heading": "See CoolClip in Action",
+        "heading": "See it in action",
         "heading_alignment": "center",
         "items_desktop": 4,
         "items_mobile": "1",
@@ -855,7 +802,8 @@
         "radius": 12,
         "background_color": "{{ settings.color_palette.background }}",
         "text_color": "{{ settings.color_palette.foreground }}"
-      }
+      },
+      "disabled": true
     },
     "custom_testimonial_Q63pWf": {
       "type": "custom-testimonial",
@@ -864,44 +812,44 @@
           "type": "testimonial",
           "settings": {
             "rating": 5,
-            "show_verified_badge": true,
-            "title": "Hubby Loves it!",
-            "body": "My husband absolutely loved it. Perfect practical gift — he uses it every weekend now doing yard work.",
-            "author": "Jessica",
-            "buyer_label": "Verified Buyer"
+            "show_verified_badge": false,
+            "title": "",
+            "body": "",
+            "author": "",
+            "buyer_label": ""
           }
         },
         "testimonial_7ijd9y": {
           "type": "testimonial",
           "settings": {
             "rating": 5,
-            "show_verified_badge": true,
-            "title": "Its working good!! 💪",
-            "body": "Purchased as a gift for my wife. She's been using it at outdoor events and says it's a game changer.",
-            "author": "Allen",
-            "buyer_label": "Verified Buyer"
+            "show_verified_badge": false,
+            "title": "",
+            "body": "",
+            "author": "",
+            "buyer_label": ""
           }
         },
         "testimonial_VdNXJh": {
           "type": "testimonial",
           "settings": {
             "rating": 5,
-            "show_verified_badge": true,
-            "title": "Nice fan",
-            "body": "I bought this portable fan to cope with the indoor heat at work; can confirm it does the trick. Lightweight and quiet.",
-            "author": "Angela",
-            "buyer_label": "Verified Buyer"
+            "show_verified_badge": false,
+            "title": "",
+            "body": "",
+            "author": "",
+            "buyer_label": ""
           }
         },
         "testimonial_pQ6Jt3": {
           "type": "testimonial",
           "settings": {
             "rating": 5,
-            "show_verified_badge": true,
-            "title": "Cool off",
-            "body": "Lightweight, going to test it out in the sun. The build quality feels solid for the price.",
-            "author": "Vlad",
-            "buyer_label": "Verified Buyer"
+            "show_verified_badge": false,
+            "title": "",
+            "body": "",
+            "author": "",
+            "buyer_label": ""
           }
         }
       },
@@ -911,13 +859,13 @@
         "testimonial_VdNXJh",
         "testimonial_pQ6Jt3"
       ],
-      "name": "Testimonials slider",
+      "name": "Reviews - add real reviews",
       "settings": {
         "eyebrow_text": "REAL CUSTOMERS, REAL RESULTS",
-        "rating": 4.8,
-        "customer_count": "20,000+",
-        "brand_name": "CoolClip",
-        "subheading_template": "Why [count] people chose [brand]",
+        "rating": 0,
+        "customer_count": "",
+        "brand_name": "",
+        "subheading_template": "Customer reviews",
         "enable_nav_arrows": false,
         "hide_scrollbar": false,
         "background_color": "#EAF4F7",
@@ -928,7 +876,8 @@
         "muted_text_color": "#6B7280",
         "padding_top": 60,
         "padding_bottom": 60
-      }
+      },
+      "disabled": true
     },
     "carousel_6PJcUx": {
       "type": "carousel",
@@ -978,7 +927,7 @@
               "type": "text",
               "name": "t:names.header",
               "settings": {
-                "text": "<h2>How CoolClip Works</h2>",
+                "text": "<h2>How it works</h2>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "center",
@@ -1057,7 +1006,6 @@
                   "type": "image",
                   "name": "t:names.image",
                   "settings": {
-                    "image": "shopify://shop_images/image1.webp",
                     "link": "",
                     "image_ratio": "adapt",
                     "width": "custom",
@@ -1081,7 +1029,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<h5>1. Clip it On</h5>",
+                    "text": "<h4>Step 1</h4>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -1107,7 +1055,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Attach CoolClip to the side of your pants, shorts, or belt.</p>",
+                    "text": "<p>Add the instructions for this product.</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -1169,7 +1117,6 @@
                   "type": "image",
                   "name": "t:names.image",
                   "settings": {
-                    "image": "shopify://shop_images/image2.webp",
                     "link": "",
                     "image_ratio": "adapt",
                     "width": "custom",
@@ -1193,7 +1140,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<h4>2. Tuck & Turn on</h4>",
+                    "text": "<h4>Step 2</h4>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -1219,7 +1166,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Clip your shirt into the outer clip and press the button to start airflow.</p>",
+                    "text": "<p>Add the instructions for this product.</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -1281,7 +1228,6 @@
                   "type": "image",
                   "name": "t:names.image",
                   "settings": {
-                    "image": "shopify://shop_images/image3.webp",
                     "link": "",
                     "image_ratio": "adapt",
                     "width": "custom",
@@ -1305,7 +1251,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<h4>3. Stay cool all day</h4>",
+                    "text": "<h4>Step 3</h4>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -1331,7 +1277,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>A refreshing breeze circulates inside your shirt, keeping you cool for up to 12 hours.</p>",
+                    "text": "<p>Add the instructions for this product.</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -1368,7 +1314,7 @@
           ]
         }
       },
-      "name": "t:names.carousel",
+      "name": "How to use - add steps",
       "settings": {
         "columns": 3,
         "mobile_columns": "1",
@@ -1379,7 +1325,8 @@
         "icons_shape": "none",
         "padding-block-start": 40,
         "padding-block-end": 40
-      }
+      },
+      "disabled": true
     },
     "cusotm_feature_comparison_table_z3UP8h": {
       "type": "cusotm-feature-comparison-table",
@@ -1387,33 +1334,33 @@
         "column_zPgXf6": {
           "type": "column",
           "settings": {
-            "label": "COOLCLIP®",
+            "label": "THIS PRODUCT",
             "highlighted": true
           }
         },
         "column_VpBWam": {
           "type": "column",
           "settings": {
-            "label": "NECK FANS",
+            "label": "ALTERNATIVE 1",
             "highlighted": false
           }
         },
         "column_7aJqKR": {
           "type": "column",
           "settings": {
-            "label": "HANDHELD FANS",
+            "label": "ALTERNATIVE 2",
             "highlighted": false
           }
         },
         "row_7XpMzf": {
           "type": "row",
           "settings": {
-            "feature_name": "Hands-free",
-            "icon_1": "check",
+            "feature_name": "Feature 1",
+            "icon_1": "none",
             "text_1": "",
-            "icon_2": "check",
+            "icon_2": "none",
             "text_2": "",
-            "icon_3": "cross",
+            "icon_3": "none",
             "text_3": "",
             "icon_4": "none",
             "text_4": ""
@@ -1422,12 +1369,12 @@
         "row_H9UNfA": {
           "type": "row",
           "settings": {
-            "feature_name": "Under-shirt evaporative cooling",
-            "icon_1": "check",
+            "feature_name": "Feature 2",
+            "icon_1": "none",
             "text_1": "",
-            "icon_2": "cross",
+            "icon_2": "none",
             "text_2": "",
-            "icon_3": "cross",
+            "icon_3": "none",
             "text_3": "",
             "icon_4": "none",
             "text_4": ""
@@ -1436,13 +1383,13 @@
         "row_QnanQB": {
           "type": "row",
           "settings": {
-            "feature_name": "12+ hour battery",
-            "icon_1": "check",
+            "feature_name": "Feature 3",
+            "icon_1": "none",
             "text_1": "",
-            "icon_2": "cross",
-            "text_2": "(3-6hr)",
-            "icon_3": "cross",
-            "text_3": "(2-4hr)",
+            "icon_2": "none",
+            "text_2": "",
+            "icon_3": "none",
+            "text_3": "",
             "icon_4": "none",
             "text_4": ""
           }
@@ -1450,13 +1397,13 @@
         "row_J6FkFB": {
           "type": "row",
           "settings": {
-            "feature_name": "Ultra Light Weight",
+            "feature_name": "Feature 4",
             "icon_1": "none",
-            "text_1": "7 oz",
+            "text_1": "",
             "icon_2": "none",
-            "text_2": "8-12 oz",
+            "text_2": "",
             "icon_3": "none",
-            "text_3": "4-6 oz",
+            "text_3": "",
             "icon_4": "none",
             "text_4": ""
           }
@@ -1464,13 +1411,13 @@
         "row_xgWnj3": {
           "type": "row",
           "settings": {
-            "feature_name": "Reduce Sweating",
+            "feature_name": "Feature 5",
             "icon_1": "none",
-            "text_1": "Whole body",
+            "text_1": "",
             "icon_2": "none",
-            "text_2": "only neck",
+            "text_2": "",
             "icon_3": "none",
-            "text_3": "limited",
+            "text_3": "",
             "icon_4": "none",
             "text_4": ""
           }
@@ -1486,11 +1433,11 @@
         "row_J6FkFB",
         "row_xgWnj3"
       ],
-      "name": "Feature comparison table",
+      "name": "Comparison - add product data",
       "settings": {
-        "eyebrow_text": "WHY COOLCLIP?",
-        "heading": "Not all fans are created equal",
-        "subheading": "See how CoolClip stacks up against the alternatives.",
+        "eyebrow_text": "COMPARE YOUR OPTIONS",
+        "heading": "Compare the features",
+        "subheading": "",
         "feature_column_label": "FEATURE",
         "table_max_width": 880,
         "background_color": "#EAF4F7",
@@ -1507,7 +1454,8 @@
         "highlighted_bg_color": "#DCE9F2",
         "highlighted_header_bg_color": "#1B5E7A",
         "highlighted_header_text_color": "#FFFFFF"
-      }
+      },
+      "disabled": true
     },
     "section_wDcDY7": {
       "type": "section",
@@ -1515,7 +1463,6 @@
         "image_nwBwaC": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/CoolClip7.webp",
             "link": "",
             "image_ratio": "landscape",
             "width": "fill",
@@ -1578,7 +1525,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<h2>Stay Cool Guarantee</h2>",
+                "text": "<h2>Product highlights</h2>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -1603,7 +1550,7 @@
             "text_QyWryz": {
               "type": "text",
               "settings": {
-                "text": "<p>Our team love the CoolClip® and are confident you will too! That's why we're offering a 30-Day, Risk-Free Guarantee. If you're not satisfied, we'll gladly issue a full refund in accordance with our Return & Refund Policy</p>",
+                "text": "<p>Add details and an image for this product.</p>",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -1630,7 +1577,7 @@
               "disabled": true,
               "settings": {
                 "label": "Shop now",
-                "link": "shopify://collections/all",
+                "link": "{{ closest.product.url }}",
                 "open_in_new_tab": false,
                 "style_class": "button",
                 "custom_button_background": "{{ settings.color_palette.foreground }}",
@@ -1656,7 +1603,7 @@
         "image_nwBwaC",
         "group_P4R7UB"
       ],
-      "name": "t:names.image_with_text",
+      "name": "Image with text - add content",
       "settings": {
         "content_direction": "row",
         "vertical_on_mobile": true,
@@ -1684,7 +1631,8 @@
         "border_radius": 0,
         "padding-block-start": 0,
         "padding-block-end": 0
-      }
+      },
+      "disabled": true
     },
     "section_hakqqT": {
       "type": "section",
@@ -1739,7 +1687,7 @@
             "accordion_row_YE3WYR": {
               "type": "_accordion-row",
               "settings": {
-                "heading": "Does it work in extreme heat?",
+                "heading": "Product question 1",
                 "open_by_default": false,
                 "icon": "none",
                 "width": 20
@@ -1748,7 +1696,7 @@
                 "text_8d8Pk8": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Absolutely! In fact it works better if you sweat a lot because as the CoolClip™ circulates air inside your shirt, it makes your sweat evaporate much faster, which quickly draws heat away from your skin. Therefore, even during the hottest summer days, it is still the most effective personal cooling device that keeps you cooled all day long.</p>",
+                    "text": "<p>Add the answer for this product.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -1778,7 +1726,7 @@
             "accordion_row_xfTMXV": {
               "type": "_accordion-row",
               "settings": {
-                "heading": "How does the CoolClip work?",
+                "heading": "Product question 2",
                 "open_by_default": false,
                 "icon": "none",
                 "width": 20
@@ -1787,7 +1735,7 @@
                 "text_KLJktA": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>The CoolClip™ works by clipping on your waist and circulates air in your shirt. The wind inside your shirt will draw heat away from the skin, keeping you cooled during the hottest summer days. In fact, you can clip it anywhere you want, and it doubles as a powerful handheld fan.</p>",
+                    "text": "<p>Add the answer for this product.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -1818,7 +1766,7 @@
               "type": "_accordion-row",
               "name": "t:names.accordion_row",
               "settings": {
-                "heading": "When will I get my order?",
+                "heading": "Product question 3",
                 "open_by_default": false,
                 "icon": "none",
                 "width": 20
@@ -1828,7 +1776,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>We will work quickly to ship your order as soon as possible. Once your order has shipped, you will receive an email with further information. Delivery times vary depending on your location.</p>",
+                    "text": "<p>Add the answer for this product.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -1859,7 +1807,7 @@
               "type": "_accordion-row",
               "name": "t:names.accordion_row",
               "settings": {
-                "heading": "Where are your products manufactured?",
+                "heading": "Product question 4",
                 "open_by_default": false,
                 "icon": "none",
                 "width": 20
@@ -1869,7 +1817,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Our products are manufactured both locally and globally. We carefully select our manufacturing partners to ensure our products are high quality and a fair value.</p>",
+                    "text": "<p>Add the answer for this product.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -1900,7 +1848,7 @@
               "type": "_accordion-row",
               "name": "t:names.accordion_row",
               "settings": {
-                "heading": "How much does shipping cost?",
+                "heading": "Product question 5",
                 "open_by_default": false,
                 "icon": "none",
                 "width": 20
@@ -1910,7 +1858,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Shipping is calculated based on your location and the items in your order. You will always know the shipping price before you purchase.</p>",
+                    "text": "<p>Add the answer for this product.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -1951,7 +1899,7 @@
         "text_FqDxMt",
         "accordion_FknfKn"
       ],
-      "name": "t:names.faq_section",
+      "name": "FAQ - add product answers",
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -1979,7 +1927,8 @@
         "border_radius": 53,
         "padding-block-start": 48,
         "padding-block-end": 48
-      }
+      },
+      "disabled": true
     }
   },
   "order": [
